@@ -14,3 +14,159 @@ public class A37b{
 		System.out.println("Hello,World");
 	}
 }
+# Thinking-in-java 练习3
+public class ATypeName{   /* Class body goes here */
+	public static void main(String[]args){
+		ATypeName a=new ATypeName();
+	}
+}
+# Thinking-in-java 练习4
+public class DateOnly{
+	int i;
+	double d;
+	boolean b;
+	public static void main(String[]args){
+		DateOnly data=new DateOnly();		
+	}
+}
+# Thinking-in-java 练习5
+public class DateOnly{
+	int i;
+	double d;
+	boolean b;
+	public static void main(String[]args){
+		DateOnly data=new DateOnly();
+		data.i=47;
+                data.d=1.1;
+                data.b=false;
+		System.out.println(data.i);
+		System.out.println(data.d);
+		System.out.println(data.b);
+	}
+}
+# Thinking-in-java 练习6
+public class A37f{
+	int storage(String s){
+		return s.length()*2;
+	}
+	public static void main(String[]args){
+		A37f a=new A37f();
+		System.out.println(a.storage("Hello World"));
+	}
+}
+# Thinking-in-java 练习7
+public class Incrementable{
+	static int i=0;
+	static void increment(){
+		i++;
+	}
+	public static void main(String[]args){
+		increment();
+		System.out.println(i);
+	}
+}
+# Thinking-in-java 练习8
+class StaticTest {
+	static int i = 47;
+}
+class Incrementable {
+	static void increment() { StaticTest.i++; }
+}
+public class A37h {
+	public static void main(String[] args) {
+		System.out.println("StaticTest.i= " + StaticTest.i);
+		StaticTest st1 = new StaticTest();
+		StaticTest st2 = new StaticTest();
+		System.out.println("st1.i= " + st1.i);
+		System.out.println("st2.i= " + st2.i);
+		Incrementable.increment();
+		System.out.println("调用increment()方法之后: ");
+		System.out.println("st1.i = " + st1.i);
+		System.out.println("st2.i = " + st2.i);
+		Incrementable.increment();
+		System.out.println("再次调用increment()方法之后:: ");
+		System.out.println("st1.i = " + st1.i);
+		System.out.println("st2.i = " + st2.i);
+		st1.i = 3;
+		System.out.println("重新赋值之后： ");
+		System.out.println("st1.i = " + st1.i);
+		System.out.println("st2.i = " + st2.i);
+		System.out.println("再次创建一个对象：");
+		StaticTest st3 = new StaticTest();
+		System.out.println("st3.i = " + st3.i);
+	}
+}
+# Thinking-in-java 练习9
+public class A37i{
+	public static void main(String[]args){
+		Boolean bool=true;
+		boolean b=(!bool);
+		System.out.println(bool);
+		System.out.println(b);
+		Character ch='x';
+		char c=ch;
+		System.out.println(ch);
+		System.out.println(c);
+		Byte byt=16;
+		byte by=byt;
+		System.out.println(byt);
+		System.out.println(by);
+		Short sh=250;
+		short s=sh;
+		System.out.println(sh);
+		System.out.println(s);
+		Integer inte=120;
+		int i=inte+30;
+		System.out.println(inte);
+		System.out.println(i);
+		Long lo=23456L;
+		long l=lo+12345;
+		System.out.println(lo);
+		System.out.println(l);
+		Float fl=13.14f;
+		float f=fl+0.01f;
+	        System.out.println(fl);
+		System.out.println(f);
+		Double dou=3.1415926;
+		double d=dou+0.02;
+		System.out.println(dou);
+		System.out.println(d);
+	}
+}
+# Thinking-in-java 练习10
+public class A37j{
+	public static void main(String[]args){
+		for(int x=0;x<3;x++){
+			System.out.println(args[x]);
+		}
+	}    //编译：javac A37j.java
+}        //运行：java A37j 14 15 16 17 18 19
+# Thinking-in-java 练习11
+public class AllTheColorsOfTheRainbow{
+	int anIntegerRepresentingColors;
+	void changeTheHueOfTheColor(int newHue){
+		anIntegerRepresentingColors=newHue;
+		System.out.println(anIntegerRepresentingColors);
+	}
+	public static void main(String[]args){
+		AllTheColorsOfTheRainbow a=new AllTheColorsOfTheRainbow();
+		a.changeTheHueOfTheColor(10);
+	}
+}
+# Thinking-in-java 练习12
+import java.util.*;
+/** The first Thinking in Java example program.
+ * Displays a string and today's date.
+ * @auther BeBraveKnight
+ * @version 4.0
+ */
+public class HelloDate{
+	/** Entry point to class & application.
+	* @param args array of string arguments
+	* @throws exceptions No exceptions thrown
+	*/
+	public static void main(String[]args){
+		System.out.println("Hello,it's: ");
+		System.out.println(new Date());
+}
+# Thinking-in-java 练习13
