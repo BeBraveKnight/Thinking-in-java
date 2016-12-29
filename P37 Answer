@@ -170,3 +170,62 @@ public class HelloDate{
 		System.out.println(new Date());
 }
 # Thinking-in-java 练习13
+/** A class comment*/
+public class Documentation1{
+	/** A field comment */
+	public int i;
+	/** A method comment */
+	public static void main(String[]args){} //编译：java Documentation1.java  文档化：javadoc Ducumentation1.java
+}  //找到生成的Documentation1.html文件，右键在浏览器中查看 ，Documentation2.java和Documentation3.java略
+# Thinking-in-java 练习14
+/** A class comment*/
+public class Documentation1{
+	/** A field comment */
+	public int i;
+	/** A method comment */
+	public static void main(String[]args){}
+}<a href="Documentation1.java"></a>
+# Thinking-in-java 练习15
+/** The first Thinking in Java example program.
+ * Displays a string and today's date.
+ * @auther BeBraveKnight
+ * @version 4.0
+ */
+ public class A37o{
+	public static void main(String[]args){
+		System.out.println("Hello,World");
+	}
+}
+# Thinking-in-java 练习16（P78）
+/** The first Thinking in Java example program.
+ * Displays a string and today's date.
+ * @auther BeBraveKnight
+ * @version 4.0
+ */
+class Tree{
+	int height;
+	Tree(){
+		System.out.println("Planting a seeding");
+		height=0;
+	}
+	Tree(int initialHeight){
+		height=initialHeight;
+		System.out.println("Creating new Tree that is "+height+" feet tall ");
+	}
+	void info(){
+		System.out.println("Tree is "+height+" feet tall ");
+	}
+	void info(String s){
+		System.out.println(s+":Tree is "+height+" feet tall ");
+	}
+}
+public class Overloading{
+	public static void main(String[]args){
+		for(int i=0;i<5;i++){
+			Tree t=new Tree(i);
+			t.info();
+			t.info("overloaded method");
+		}
+		new Tree();
+	}
+}
