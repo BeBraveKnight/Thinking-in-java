@@ -1,0 +1,140 @@
+//练习1
+import static net.mindview.util.Print.*; //需要从www.MindView.net下载类库
+public class A38{
+	public static void main(String[]args){
+		System.out.println("正常的打印语句");
+		print("简短的打印语句");
+	}
+}
+//练习2
+public class A40{
+	float f;
+	public static void main(String[]args){
+		A40 a1=new A40();
+		A40 a2=new A40();
+		a1.f=12.3f;
+		a2.f=34.5f;
+		System.out.println(a1.f);
+		System.out.println(a2.f);
+		a1=a2;
+		System.out.println(a1.f);
+		System.out.println(a2.f);
+		a1.f=78.9f;
+		System.out.println(a1.f);
+		System.out.println(a2.f);
+	}
+}
+//练习3
+public class A41{
+	float f;
+	public static void go(A41 t){
+		t.f=46.8f;
+	}
+	public static void main(String[]args){
+		A41 a=new A41();
+		a.f=33.3f;
+		System.out.println(a.f);
+		go(a);
+		System.out.println(a.f);
+	}
+}
+//练习4
+public class A43{
+	public static final float DISTANCE=800.4f;
+	public static final float TIME=8.2f;
+	public static void main(String[]args){
+		System.out.println("距离为："+DISTANCE+"米");
+		System.out.println("时间为："+TIME+"秒");
+		System.out.println("速度为："+(DISTANCE/TIME)+" m/s");
+	}
+}
+//练习5
+class Dog{
+	String name;
+	String says;
+}
+public class A45a{
+	public static void main(String[]args){
+		Dog d1=new Dog();
+		Dog d2=new Dog();
+		d1.name="spot";
+		d2.name="scruffy";
+		d1.says="Ruff!";
+		d2.says="Wurf!";
+		System.out.println("名字："+d1.name+",叫声："+d1.says);
+		System.out.println("名字："+d2.name+",叫声："+d2.says);
+		}
+}
+//练习6
+class Dog{
+	String name;
+	String says;
+}
+public class A45b{
+	public static void main(String[]args){
+		Dog d1=new Dog();
+		Dog d2=new Dog();
+		Dog d3=new Dog();
+		Dog d4=new Dog();
+		d1.name="spot";
+		d2.name="scruffy";
+		d1.says="Ruff!";
+		d2.says="Wurf!";
+		d3.name="spot";
+		d3.says="scruffy";
+		d4=d1;
+		System.out.println(d1==d3);
+		System.out.println(d1.equals(d3));
+		System.out.println(d1==d4);
+		System.out.println(d1.equals(d4));
+		}
+}
+//练习7
+import java.util.*;
+public class A46{
+	public static void main(String[]args){
+		Random rand=new Random(47);
+		for(int x=0;x<8;x++){
+			int a=rand.nextInt(2);
+			if(a==1){
+				System.out.println("第"+x+"次为正面");
+			}else{
+				System.out.println("第"+x+"次为反面");
+			}
+		}
+	}
+}
+//练习8
+public class A48{
+	long a=0Xd2e;
+	long b=0321;
+	public static void main(String[]args){
+		A48 t=new A48();
+		System.out.println(t.a);//3374
+		System.out.println(t.b);//209
+		System.out.println(Long.toBinaryString(t.a));
+		System.out.println(Long.toBinaryString(t.b));//除二取余，倒序组合
+	}
+}
+//练习9
+public class A49{
+	public static void main(String[]args){
+		System.out.println("float的最大值为："+Float.MAX_VALUE);
+		System.out.println("float的最小值为："+Float.MIN_VALUE);
+		System.out.println("double的最大值为："+Double.MAX_VALUE);
+		System.out.println("double的最小值为："+Double.MIN_VALUE);	
+	}
+}
+//练习10
+public class A49b{
+	public static void main(String[]args){
+		int a=0x232;
+		int b=0x359;
+		System.out.println("a:  "+Integer.toBinaryString(a));
+		System.out.println("b:  "+Integer.toBinaryString(b));
+		System.out.println("a&b:"+Integer.toBinaryString(a&b));
+		System.out.println("a|b:"+Integer.toBinaryString(a|b));
+		System.out.println("a^b:"+Integer.toBinaryString(a^b));
+		System.out.println("~a: "+Integer.toBinaryString(~a));
+	}
+}
