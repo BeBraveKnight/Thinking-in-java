@@ -138,3 +138,74 @@ public class A49b{
 		System.out.println("~a: "+Integer.toBinaryString(~a));
 	}
 }
+//练习11
+public class A52a{
+	public static void main(String[]args){
+		int a=0x359;
+		System.out.println("a:   "+Integer.toBinaryString(a));
+		System.out.println("a>>1:"+Integer.toBinaryString(a>>1));
+		System.out.println("a>>2:"+Integer.toBinaryString(a>>2));
+		System.out.println("a>>3:"+Integer.toBinaryString(a>>3));
+		System.out.println("a>>4:"+Integer.toBinaryString(a>>4));
+		System.out.println("a>>5:"+Integer.toBinaryString(a>>5));
+		System.out.println("a>>6:"+Integer.toBinaryString(a>>6));
+		System.out.println("a>>7:"+Integer.toBinaryString(a>>7));
+		System.out.println("a>>8:"+Integer.toBinaryString(a>>8));
+		System.out.println("a>>9:"+Integer.toBinaryString(a>>9));
+		System.out.println("a>>10:"+Integer.toBinaryString(a>>10));
+	}
+}
+//练习12
+public class A52b{
+	public static void main(String[]args){
+		int a=255;
+		System.out.println("a:    "+Integer.toBinaryString(a));
+		System.out.println("a<<1: "+Integer.toBinaryString(a<<1));
+	    System.out.println("a>>>2:"+Integer.toBinaryString(a>>>2));
+		System.out.println("a>>>3:"+Integer.toBinaryString(a>>>3));
+		System.out.println("a>>>4:"+Integer.toBinaryString(a>>>4));
+		System.out.println("a>>>5:"+Integer.toBinaryString(a>>>5));
+		System.out.println("a>>>6:"+Integer.toBinaryString(a>>>6));
+		System.out.println("a>>>7:"+Integer.toBinaryString(a>>>7));
+		System.out.println("a>>>8:"+Integer.toBinaryString(a>>>8));
+		System.out.println("a>>>9:"+Integer.toBinaryString(a>>>9));
+		System.out.println("a>>>10:"+Integer.toBinaryString(a>>>10));
+	}
+}
+//练习13
+public class A53c{
+	char a='d';
+	public static void main(String[]args){
+        A53c t=new A53c(); 
+		System.out.println(t.go(t.a));
+		System.out.println(t.go('c'));
+		System.out.println(t.go('x'));
+		System.out.println(t.go('z'));
+		System.out.println(t.go('8'));
+	}
+	public String go(char ch){
+		int cha=(int)ch;
+		return (Integer.toBinaryString(cha)) ;
+	}
+}
+//练习14
+public class A63{
+	public static void main(String[]args){
+		A63 t=new A63();
+		String str1="world";
+		String str2=new String("world");
+		System.out.println(t.go("hello","hello"));
+		System.out.println(t.go("hello","Hello"));
+		System.out.println("hello".equals("hello"));
+		System.out.println("hello".equals("Hello"));
+		System.out.println(str1.equals(str2));
+		System.out.println(t.go(str1,str2));//用new创建的字符串不会入池，必须手工入池String.intern()
+	}
+	public boolean go(String a,String b){
+		if(a==b){
+			return true;
+		}else{
+			return false;
+		}
+	}
+}
