@@ -256,3 +256,115 @@ public class A97b{
 	}
 }
 //练习15
+class A{
+	String str;
+	{
+		str="hello";
+	}
+}
+public class A98{
+	public static void main(String[]args){
+	    A a=new A();
+		System.out.println(a.str);
+	}
+}
+//练习16
+public class A101a{
+	public static void main(String[]args){
+		A.main(new String[]{"kuang","zeng","wu","fan","li","man"});
+	}
+}
+class A{
+	public static void main(String[]args){
+	    for(String s:args){
+		   System.out.print(s+"、");
+		}
+	}
+}
+//练习17
+class A{
+	A(String str){
+		System.out.println(str);
+	}
+}
+public class A101b{
+	public static void main(String[]args){
+	    A[] a=new A[20]; //没有打印出来
+	}
+}
+//练习18
+class A{
+	A(String str){
+		System.out.println(str);
+	}
+}
+public class A101c{
+	public static void main(String[]args){
+	    A[] a=new A[3];
+	    a[0]=new A("kuang");
+	    a[1]=new A("zeng");
+	    a[2]=new A("wu");
+	}
+}
+//练习19
+class Book{
+	public static void go(String...strs){
+		for(String s:strs){
+			System.out.println(s);
+		}
+	}
+}
+public class A105a{
+	public static void main(String[]args){
+		Book b=new Book();
+		b.go("kuang","zeng","wu");
+	}
+}
+//练习20
+public class A105b{
+	public static void main(String...args){
+		for(int i=0;i<args.length;i++){
+		    System.out.println(args[i]);
+		}
+	}
+}
+//练习21
+enum ZhiBi{
+	ONE,FIVE,TEN,TWENTY,FIFTY,HUNDRED
+}
+public class A107a{
+	public static void main(String[]args){
+	    for(ZhiBi z:ZhiBi.values()){
+			System.out.println(z+" ,ordinal "+z.ordinal());
+		}
+	}
+}
+//练习22
+enum ZhiBi{
+	ONE,FIVE,TEN,TWENTY,FIFTY,HUNDRED
+}
+public class A107b{
+	ZhiBi z;
+	public A107b(ZhiBi z){
+		this.z=z;
+	}
+	public void go(){
+	    switch(this.z){
+		    case ONE:System.out.println("这是1元的纸币");break;
+		    case FIVE:System.out.println("这是5元的纸币");break;
+		    case TEN:System.out.println("这是10元的纸币");break;
+		    case TWENTY:System.out.println("这是20元的纸币");break;
+		    case FIFTY:System.out.println("这是50元的纸币");break;
+		    case HUNDRED:System.out.println("这是100元的纸币");break;
+	    }
+	}
+	public static void main(String[]args){
+	    for(ZhiBi z:ZhiBi.values()){
+			System.out.println(z+" ,ordinal "+z.ordinal());
+		}
+		A107b b1=new A107b(ZhiBi.ONE);
+		b1.go();
+		A107b b2=new A107b(ZhiBi.FIFTY);
+		b2.go();
+	}
+}
