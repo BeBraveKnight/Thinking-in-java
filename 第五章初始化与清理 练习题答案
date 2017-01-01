@@ -1,0 +1,258 @@
+//练习1
+public class A77a{
+	String str;
+	public static void main(String[]args){
+	    System.out.println(new A77a().str);
+	}
+}
+//练习2
+public class A77b{
+	String str1="Hello";
+	String str2;
+	public A77b(String s){//在构造函数中初始化，具有前瞻性，很好的考虑了项目未来的优化与维护
+	    str2=s;
+	}
+	public static void main(String[]args){
+		A77b a=new A77b("World!");
+	    System.out.println(a.str1);
+	    System.out.println(a.str2);
+	}
+}
+//练习3
+public class A83a{
+	public A83a(){
+		System.out.println("这里是默认构造器");
+	}
+	public static void main(String[]args){
+        A83a t=new A83a();
+	}
+}
+//练习4
+public class A83b{
+	public A83b(){
+		System.out.println("这里是默认构造器");
+	}
+	public A83b(String a){
+		System.out.println("这是重载构造器，参数为："+a);
+	}
+	public static void main(String[]args){
+        A83b t1=new A83b();
+        A83b t2=new A83b("hello");
+	}
+}
+//练习5
+class Dog{
+	public void bark(){
+	    System.out.println("这是一只不会叫的呆狗");
+	}
+	public void bark(int a){
+	    System.out.println("barking");
+	}
+	public void bark(String b){
+	    System.out.println("howling");
+	}
+}
+public class A83c{
+	public static void main(String[]args){
+	    Dog d1=new Dog();
+	    d1.bark();
+	    d1.bark(20);
+	    d1.bark("hobby");
+	}
+}
+//练习6
+class Dog{
+	public void bark(){
+	    System.out.println("这是一只不会叫的呆狗");
+	}
+	public void bark(int a,String b){
+	    System.out.println("barking");
+	}
+	public void bark(String b,int a){
+	    System.out.println("howling");
+	}
+}
+public class A83d{
+	public static void main(String[]args){
+	    Dog d1=new Dog();
+	    d1.bark();
+	    d1.bark(20,"hello");
+	    d1.bark("hobby",50);
+	}
+}
+//练习7
+class Dog{
+	int a=100;
+}
+public class A83e{
+	public static void main(String[]args){
+        Dog d=new Dog();
+		System.out.println(d.a);
+	}
+}
+//练习8
+public class A85{
+	int x=0;
+	public void go(){
+	    getInfo();
+		this.getInfo();
+		System.out.println(x);
+	}
+	public void getInfo(){
+		x++;
+	}
+	public static void main(String[]args){
+	    A85 t=new A85();
+		t.go();
+	}
+}
+//练习9
+public class A86{
+	public A86(String name,double price){
+		this("java开发",78.0,"第四版本");
+	}
+	public A86(String name,double price,String note){
+	    System.out.println("书名："+name+",价格："+price+"，备注："+note);
+	}
+	public static void main(String[]args){
+	    A86 t=new A86("kuang",2000.8);
+	}
+}
+//练习10
+class App{
+	boolean checkedOut=false;
+	public App(boolean b){
+		checkedOut=b;
+	}
+	public void checkIn(){
+		checkedOut=false;
+	}
+    protected void finalize(){
+		if(checkedOut){
+			System.out.println("错误：有一个App没有checkIn()");
+		}
+	}
+}
+public class A89a{
+	public static void main(String[]args){
+	    App a=new App(true);
+		a.checkIn();
+		new App(true);
+	}
+}
+//练习11
+class App{
+	boolean checkedOut=false;
+	public App(boolean b){
+		checkedOut=b;
+	}
+	public void checkIn(){
+		checkedOut=false;
+	}
+    protected void finalize(){
+		if(checkedOut){
+			System.out.println("错误：有一个App没有checkIn()");
+		}
+	}
+}
+public class A89b{
+	public static void main(String[]args){
+	    App a=new App(true);
+		a.checkIn();
+		new App(true);
+        System.gc();
+	}
+}
+//练习12
+class Tank {
+	int howFull = 0;
+	Tank() { this(0); }
+	Tank(int fullness) {
+		howFull = fullness;		
+	}
+	void sayHowFull() {
+		if(howFull == 0) System.out.println("Tank is empty");
+		else System.out.println("Tank filling status = " + howFull);
+	}
+	void empty() {
+		howFull = 0;
+	}
+	protected void finalize() {
+		if(howFull != 0)
+			System.out.println("Error: Tank not empty");
+	}
+}
+public class A89c {
+	public static void main(String[] args) {
+		Tank tank1 = new Tank();
+		Tank tank2 = new Tank(3);
+		Tank tank3 = new Tank(5);
+		// Proper cleanup: empty tank before going home
+		tank2.empty();
+		// Drop the reference, forget to cleanup:
+		new Tank(6);
+		System.out.println("Check tanks:");
+		System.out.println("tank1: ");
+		tank1.sayHowFull();
+		System.out.println("tank2: ");
+		tank2.sayHowFull();
+		System.out.println("tank3: ");
+		tank3.sayHowFull();
+		System.out.println("first forced gc():");
+		System.gc();
+		// Force finalization on exit but using method
+		// deprecated since JDK 1.1:
+		System.out.println("try deprecated runFinalizersOnExit(true):");
+		System.runFinalizersOnExit(true);
+		System.out.println("last forced gc():");
+		System.gc();
+	}	
+}
+//练习13
+class Cup{
+	Cup(int marker){
+		System.out.println("Cup("+marker+")");
+	}
+	void f(int marker){
+		System.out.println("f("+marker+")");
+	}
+}
+class Cups{
+	static Cup cup1;
+	static Cup cup2;
+	static{
+	cup1=new Cup(1);
+	cup2=new Cup(2);	
+	}
+	Cups(){
+		System.out.println("Cups()");
+	}
+}
+public class A97a{
+	public static void main(String[]args){
+		System.out.println("Inside main()");
+		//Cups.cup1.f(99);
+	}
+	//static Cups cups1=new Cups();
+	static Cups cups2=new Cups();
+}
+//练习14
+class A{
+	static String str1="hello";
+	static String str2;
+	static {
+		str2="world";
+	}
+	static void go(){
+		System.out.println(str1);
+		System.out.println(str2);
+	}
+}
+public class A97b{
+	public static void main(String[]args){
+	    A a=new A();
+		System.out.println("hello world");
+		a.go();
+	}
+}
+//练习15
