@@ -1,0 +1,34 @@
+//练习1
+import myPackage.*;//先在myPackage包中创建一个类A113Test，编译时使用javac -d . A113Test.java
+public class A113{
+	public static void main(String[]args){
+		A113Test a2=new A113Test();
+		a2.go();
+	}
+}
+//练习2
+import java.util.*;
+import access.*;
+public class A114{
+	public static void main(String[]args){
+		//Vector v=new Vector(); 实际所发生的冲突：对Vector的引用不明确
+		access.Vector v=new access.Vector();
+	}
+}
+//练习3
+import static debug.Test.*;
+public class A115{
+	public static void main(String[]args){
+		debug("Hello World!");
+	}
+}
+/*package debug;
+public class Test{
+	public static void debug(String s){
+		System.out.println(s);
+	}
+}
+package debugoff;
+public class Test{
+}*/
+//练习4
