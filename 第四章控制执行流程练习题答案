@@ -1,0 +1,227 @@
+//练习1
+public class A66a{
+	public static void main(String[]args){
+		int count=0;
+		for(int i=0;i<100;i++){
+			count++;
+			if(count==6){
+				System.out.println("");
+				count=1;
+			}
+			System.out.print((i+1)+"、");
+		}
+	}
+}
+//练习2
+public class A66b{
+	public static void main(String[]args){
+		int[]a=new int[25];
+		System.out.print("25个随机数为：");
+		for(int x=0;x<a.length;x++){
+			a[x]=(int)(Math.random()*100);
+			System.out.print(a[x]+"、");
+		}
+		System.out.println("");
+		System.out.println("------------------------");
+		for(int y=0;y<a.length-1;y++){
+			if(a[y]>a[y+1]){
+				System.out.print(a[y]+"大于后一个数、");
+			}else if(a[y]<a[y+1]){
+				System.out.print(a[y]+"小于后一个数、");
+			}else{
+				System.out.print(a[y]+"等于后一个数、");
+			}
+		}
+	}
+}
+//练习3
+public class A67a{
+	public static void main(String[]args){
+		int[]a=new int[25];
+		System.out.print("25个随机数为：");
+		for(int x=0;x<a.length;x++){
+			a[x]=(int)(Math.random()*100);
+			System.out.print(a[x]+"、");
+		}
+		System.out.println("");
+		System.out.println("------------------------");
+		while(true){
+		 for(int y=0;y<a.length-1;y++){
+			if(a[y]>a[y+1]){
+				System.out.print(a[y]+"大于后一个数、");
+			}else if(a[y]<a[y+1]){
+				System.out.print(a[y]+"小于后一个数、");
+			}else{
+				System.out.print(a[y]+"等于后一个数、");
+			}
+		 }
+		}
+	}
+}
+//练习4
+public class A67b{
+	public static void main(String[]args){
+		boolean a=true;
+		System.out.println("100以内的素数为：");
+		for(int x=1;x<100;x++){
+			a=true;
+			for(int y=2;y<x;y++){
+				if((x%y)==0){
+					a=false;
+					break;
+				}
+			}
+			if(a){
+				System.out.print(x+"、");
+			}
+		}
+	}
+}
+//练习5
+public class A67c {
+	static void binaryPrint (int q) {
+		if(q == 0) System.out.print(0);
+		else {
+			int nlz = Integer.numberOfLeadingZeros(q); 
+			q <<= nlz;
+			for(int p = 0; p < 32 - nlz; p++) {
+				int n = (Integer.numberOfLeadingZeros(q) == 0) ? 1 : 0;
+				System.out.print(n);		
+				q <<= 1;
+			}		
+		}
+		System.out.println("");
+	}
+	public static void main(String[] args) {
+		int i = 1 + 4 + 16 + 64;//  1010101
+		int j = 2 + 8 + 32 + 128;//10101010
+		int k = 0x100;          //100000000
+		int m = 0;
+		System.out.println("Using Integer.toBinaryString():");
+		System.out.println("i = " + Integer.toBinaryString(i));
+		System.out.println("j = " + Integer.toBinaryString(j));
+		System.out.println("k = " + Integer.toBinaryString(k));
+		System.out.println("m = " + Integer.toBinaryString(m));		
+		System.out.println("i & j = " + (i & j) + " = " + Integer.toBinaryString(i & j));
+		System.out.println("i | j = " + (i | j) + " = " + Integer.toBinaryString(i | j));
+		System.out.println("i ^ j = " + (i ^ j) + " = " + Integer.toBinaryString(i ^ j));
+		System.out.println("~i = " + Integer.toBinaryString(~i));
+		System.out.println("~j = " + Integer.toBinaryString(~j));
+		System.out.println("Using binaryPrint():");
+		System.out.println("i = " + i + " = ");
+		binaryPrint(i);		
+		System.out.println("j = " + j + " = ");
+		binaryPrint(j);
+		System.out.println("k = " + k + " = ");
+		binaryPrint(k);		
+		System.out.println("m = " + m + " = ");
+		binaryPrint(m);
+		System.out.println("i & j = " + (i & j) + " = ");
+		binaryPrint(i & j);
+		System.out.println("i | j = " + (i | j) + " = ");
+		binaryPrint(i | j);
+		System.out.println("i ^ j = " + (i ^ j) + " = ");
+		binaryPrint(i ^ j);
+		System.out.println("~i = " + ~i + " = ");
+		binaryPrint(~i);		
+		System.out.println("~j = " + ~j + " = ");
+		binaryPrint(~j);
+	}	
+}
+//练习6
+public class A69{
+	public void test(int testval,int begin,int end){
+		if((testval>=begin)&&(testval<=end)){
+			System.out.println(testval+"在"+begin+"和"+end+"之间");
+		}else{
+			System.out.println(testval+"不在"+begin+"和"+end+"之间");
+		}
+	}
+	public static void main(String[]args){
+		new A69().test(45,12,67);
+		new A69().test(11,12,68);
+	}
+}
+//练习7
+public class A70{
+	public static void main(String[]args){
+		int count=0;
+		for(int i=0;i<100;i++){
+			count++;
+			if(count==6){
+				System.out.println("");
+				count=1;
+			}
+			System.out.print((i+1)+"、");
+			if((i+1)==99){
+				return;//与break效果相同
+			}
+		}
+	}
+}
+//练习8
+public class A75a{
+	public static void main(String[]args){
+		switch(((int)(Math.random()*5)-0)){
+			case 0:System.out.println("随机数为0");break;
+			case 1:System.out.println("随机数为1");break;
+			case 2:System.out.println("随机数为2");break;
+			case 3:System.out.println("随机数为3");break;
+			case 4:System.out.println("随机数为4");break;
+			case 5:System.out.println("随机数为5");break;
+		}
+	}
+}
+//练习9
+public class A75b{ //记得运行时输入一个参数代表指定的个数
+	public static void main(String[]args){
+		int []a=new int[10000];
+		a[0]=1;
+		a[1]=1;
+		for(int x=0;x<a.length-2;x++){
+			a[x+2]=a[x+1]+a[x];
+		}
+		for(int y=0;y<Integer.parseInt(args[0]);y++){
+			System.out.print(a[y]+"、");
+		}
+	}
+}
+//练习10
+public class A75c{
+	public static void main(String[]args){
+		for(int number=1001;number<10000;number++){
+			if((number%100)==0){
+				continue;
+			}
+			int a=number/1000;
+			int b=(number-a*1000)/100;
+			int c=(number-a*1000-b*100)/10;
+			int d=number%10;
+			if(number==((a*10+b)*(c*10+d))){
+				System.out.println(number);
+			}else if(number==((a*10+c)*(b*10+d))){
+				System.out.println(number);
+			}else if(number==((a*10+d)*(b*10+c))){
+				System.out.println(number);
+			}else if(number==((a*10+b)*(d*10+c))){
+				System.out.println(number);
+			}else if(number==((a*10+c)*(d*10+b))){
+				System.out.println(number);
+			}else if(number==((a*10+d)*(c*10+b))){
+				System.out.println(number);
+			}else if(number==((b*10+a)*(c*10+d))){
+				System.out.println(number);
+			}else if(number==((b*10+a)*(d*10+c))){
+				System.out.println(number);
+			}else if(number==((b*10+c)*(d*10+a))){
+				System.out.println(number);
+			}else if(number==((b*10+d)*(c*10+a))){
+				System.out.println(number);
+			}else if(number==((d*10+b)*(c*10+a))){
+				System.out.println(number);
+			}else if(number==((d*10+a)*(c*10+b))){
+				System.out.println(number);
+			}
+		}
+	}
+}
