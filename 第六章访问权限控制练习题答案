@@ -32,3 +32,118 @@ package debugoff;
 public class Test{
 }*/
 //练习4
+package myPackage;
+public class A120a{
+    public static void main(String[]args){
+	    debug.Test.greet();
+	}
+}//不在同一个包，编译不通过
+/*package debug;
+public class Test{
+    protected static void greet(){
+	    System.out.println("Hello");
+	}
+}
+package debug;
+public class Test1{
+    public static void main(String[]args){
+	    debug.Test.greet();
+	}
+}*/
+//练习5
+public class A120b{
+	public int a1=10;
+	private int a2=20;
+	protected int a3=30;
+	int a4=40;
+	public void b1(){
+		System.out.println("b1()");
+	}
+	private void b2(){
+		System.out.println("b2()");
+	}
+	protected void b3(){
+		System.out.println("b3()");
+	}
+	void b4(){
+		System.out.println("b4()");
+	}
+	public static void main(String[]args){
+		A120b a=new A120b();
+	    System.out.println(a.a1);
+	    System.out.println(a.a2);
+	    System.out.println(a.a3);
+	    System.out.println(a.a4);
+	    a.b1();
+	    a.b2();
+	    a.b3();
+	    a.b4();
+	}
+}
+//练习6
+class Test{
+	protected int a;
+}
+public class A120c{
+	public static void main(String[]args){
+		Test t=new Test();
+		t.a=100;
+		System.out.println(t.a);
+	}
+}
+//练习7
+import access.Widget;
+public class A121{
+	public static void main(String[]args){
+		new Widget();
+	}
+}
+/*package access;
+public class Widget{
+	public Widget(){
+		System.out.println("Widget");
+	}
+}*/
+//练习8
+class Connection{
+	private Connection(){
+	    System.out.println("connection is created");
+	}
+	private static Connection c;
+	public static Connection get(){
+		return new Connection();
+	}
+}
+public class ConnectionManager{
+	private static int count=0;
+	private static Connection[]cs=new Connection[]{Connection.get(),Connection.get(),Connection.get()};
+	public static Connection getConnection(){
+		if(count<3){
+			count++;
+			return cs[count--];
+		}else{
+			System.out.println("no more");
+			return null;
+		}
+	}
+	public static void main(String[]args){
+		Connection a1=ConnectionManager.getConnection();
+		Connection a2=ConnectionManager.getConnection();
+		Connection a3=ConnectionManager.getConnection();
+		Connection a4=ConnectionManager.getConnection();
+	}
+}
+//练习9
+package access.foreign;
+import access.local.*;
+public class Foreign{
+	public static void main(String[]args){
+		PackagedClass pc=new PackagedClass();
+	}
+} //PackagedClass没有加public ,在access.local中不是公共的，无法从外部程序包对其进行访问
+/*package access.local;
+class PackagedClass{
+	public PackagedClass(){
+		System.out.println("Creating a packaged class");
+	}
+}*/
