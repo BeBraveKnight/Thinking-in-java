@@ -95,3 +95,313 @@ public class A129c extends Drawing{
 	}
 }
 //练习5
+class A{
+	public A(){
+	    System.out.println("A");
+	}
+}
+class B{
+	public B(){
+		System.out.println("B");
+	}
+}
+class C extends A{
+	B b=new B();
+}
+public class A130a{
+	public static void main(String[]args){
+		new C();
+	}
+}
+//练习6
+class Game{
+	Game(int i){
+	    System.out.println("Game constructor");
+	}
+}
+class BoardGame extends Game{
+	BoardGame(int i){
+	    System.out.println("BoardGame constructor");
+	}
+}
+public class Chess extends BoardGame{
+	Chess(){
+		super(11);
+	    System.out.println("Chess constructor");
+	}
+	public static void main(String[]args){
+		new Chess();
+	}
+}
+//练习7
+class A{
+	public A(int i){
+	    System.out.println("A");
+	}
+}
+class B{
+	public B(double j){
+		System.out.println("B");
+	}
+}
+class C extends A{
+	public C(){
+		super(12);
+		B b=new B(12.4);
+		System.out.println("C");
+	}
+}
+public class A130c{
+	public static void main(String[]args){
+		new C();
+	}
+}
+//练习8
+class Father{
+	Father(int i){
+		System.out.println("Father");
+	}
+}
+public class A130d extends Father{
+	public A130d(){
+		super(55);
+		System.out.println("默认构造器");
+	}
+	public A130d(int i){
+		super(44);
+		System.out.println("非默认构造器");
+	}
+	public static void main(String[]args){
+		new A130d();
+		new A130d(30);
+	}
+}
+//练习9
+class Root{
+	Component1 c1=new Component1();
+	Component2 c2=new Component2();
+	Component3 c3=new Component3();
+	public Root(){
+		System.out.println("Root");
+	}
+}
+class Component1{
+	public Component1(){
+		System.out.println("Component1");
+	}
+}
+class Component2{
+	public Component2(){
+		System.out.println("Component2");
+	}
+}
+class Component3{
+	public Component3(){
+		System.out.println("Component3");
+	}
+}
+class Stem extends Root{
+	Component1 c1=new Component1();
+	Component2 c2=new Component2();
+	Component3 c3=new Component3();
+	public Stem(){
+		System.out.println("Stem");
+	}
+}
+public class A130e{
+	public static void main(String[]args){
+		new Stem();
+	}
+}
+//练习10
+class Root{
+	Component1 c1=new Component1(10);
+	Component2 c2=new Component2(20);
+	Component3 c3=new Component3(30);
+	public Root(int i){
+		System.out.println("Root");
+	}
+}
+class Component1{
+	public Component1(int i){
+		System.out.println("Component1");
+	}
+}
+class Component2{
+	public Component2(int i){
+		System.out.println("Component2");
+	}
+}
+class Component3{
+	public Component3(int i){
+		System.out.println("Component3");
+	}
+}
+class Stem extends Root{
+	Component1 c1=new Component1(49);
+	Component2 c2=new Component2(63);
+	Component3 c3=new Component3(82);
+	public Stem(int i){
+		super(6666);
+		System.out.println("Stem");
+	}
+}
+public class A130f{
+	public static void main(String[]args){
+		new Stem(2333);
+	}
+}
+//练习11
+class Cleanser{
+	private String s="Cleanser";
+	public void append(String a){s+=a;}
+	public void dilute(){append(" dilute()");}
+	public void apply(){append(" apply()");}
+	public void scrub(){append(" scrub()");}
+	public String toString(){return s;}
+	public static void main(String[]args){
+		Cleanser x=new Cleanser();
+		x.dilute();x.apply();x.scrub();
+		System.out.print(x);
+	}
+}
+public class Detergent extends Cleanser{
+	private Cleanser cle=new Cleanser();
+	public void scrub(){
+		cle.append(" Detergent.scrub()");
+		cle.scrub();
+	}
+	public void foam(){cle.append(" foam()");}
+	public static void main(String[]args){
+		cle.dilute();
+		cle.apply();
+		this.scrub();
+		this.foam();
+		System.out.print(x);
+		System.out.print("Testing base class");
+		Cleanser.main(args);
+	}
+}
+//练习12
+class Root{
+	Component1 c1=new Component1();
+	Component2 c2=new Component2();
+	Component3 c3=new Component3();
+	public Root(){
+		System.out.println("Root");
+	}
+	public void dispose(){
+		System.out.println("Erasing Root");
+	}
+}
+class Component1{
+	public Component1(){
+		System.out.println("Component1");
+	}
+	public void dispose(){
+		System.out.println("Erasing Component1");
+	}
+}
+class Component2{
+	public Component2(){
+		System.out.println("Component2");
+	}
+	public void dispose(){
+		System.out.println("Erasing Component2");
+	}
+}
+class Component3{
+	public Component3(){
+		System.out.println("Component3");
+	}
+	public void dispose(){
+		System.out.println("Erasing Component3");
+	}
+}
+class Stem extends Root{
+	Component1 c1=new Component1();
+	Component2 c2=new Component2();
+	Component3 c3=new Component3();
+	public Stem(){
+		System.out.println("Stem");
+	}
+	public void dispose(){
+		System.out.println("Stem.dispose()");
+		c1.dispose();
+		c2.dispose();
+		c3.dispose();
+		super.dispose();
+	}
+}
+public class A135{
+	public static void main(String[]args){
+		new Stem().dispose();
+	}
+}
+//练习13
+class Homer{
+	void fun(int i){
+		System.out.println("int");
+	}
+	void fun(String i){
+		System.out.println("String");
+	}
+	void fun(char i){
+		System.out.println("char");
+	}
+}
+public class A136 extends Homer{
+	void fun(){
+		System.out.println("无参方法");
+	}
+	public static void main(String[]args){
+		A136 a=new A136();
+		a.fun();
+		a.fun(23);
+		a.fun("hello");
+		a.fun('t');
+	}
+}
+//练习14
+class Engine{
+	public void start(){}
+	public void rev(){}
+	public void stop(){}
+	public void service(){
+		System.out.println("引擎维修");
+	}
+}
+class Wheel{
+	public void inflate(int psi){
+		System.out.println("给轮子充气");
+	}
+}
+class Window{
+	public void rollup(){
+		System.out.println("升窗");
+	}
+	public void rolldown(){}
+}
+class Door{
+	public Window window=new Window();
+	public void open(){}
+	public void close(){}
+}
+public class Car{
+	public Engine engine=new Engine();
+	public Wheel[]wheel=new Wheel[4];
+	public Door left=new Door();
+	public Door right=new Door();
+	public Car(){
+		for(int i=0;i<4;i++){
+			wheel[i]=new Wheel();
+		}
+	}
+	public static void main(String[]args){
+		Car car=new Car();
+		car.left.window.rollup();
+		car.wheel[0].inflate(72);
+		car.engine.service();
+	}
+}
+//练习15
