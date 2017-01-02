@@ -1,0 +1,97 @@
+//练习1
+class Bath{
+	private String str;
+	public Bath(){
+		System.out.println("惰性初始化");
+		str="hello";
+	}
+	public String toString(){
+		return str;
+	}
+}
+public class A127{
+	private Bath b;
+	public A127(){
+		b=new Bath();
+	}
+	public String toString(){
+		return "b="+b;
+	}
+	public static void main(String[]args){
+		A127 a=new A127();
+		System.out.println(a);
+	}
+}
+//练习2
+class Cleanser{
+	private String s="Cleanser";
+	public void append(String a){s+=a;}
+	public void dilute(){append(" dilute()");}
+	public void apply(){append(" apply()");}
+	public void scrub(){append(" scrub()");}
+	public String toString(){return s;}
+	public static void main(String[]args){
+		Cleanser x=new Cleanser();
+		x.dilute();x.apply();x.scrub();
+		System.out.print(x);
+	}
+}
+class Detergent extends Cleanser{
+	public void scrub(){
+		append(" Detergent.scrub()");
+		super.scrub();
+	}
+	public void foam(){append(" foam()");}
+	public static void main(String[]args){
+		Detergent x=new Detergent();
+		x.dilute();
+		x.apply();
+		x.scrub();
+		x.foam();
+		System.out.print(x);
+		System.out.print("Testing base class");
+		Cleanser.main(args);
+	}
+}
+public class A129a extends Detergent{
+	public void scrub(){
+		append(" A129a.scrub()");
+		super.scrub();
+	}
+	public void sterilize(){append(" sterilize()");}
+	public static void main(String[]args){
+		A129a x=new A129a();
+		x.dilute();
+		x.apply();
+		x.scrub();
+		x.sterilize();
+		System.out.print(x);
+		System.out.print("Testing base class");
+		Detergent.main(args);
+	}
+}
+//练习3
+class Art{
+	Art(){System.out.println("Art constructor");}
+}
+class Drawing extends Art{
+	Drawing(){System.out.println("Drawing constructor");}
+}
+public class A129b extends Drawing{
+	public static void main(String[]args){
+		new A129b();
+	}
+}
+//练习4
+class Art{
+	Art(){System.out.println("Art constructor");}
+}
+class Drawing extends Art{
+	Drawing(){System.out.println("Drawing constructor");}
+}
+public class A129c extends Drawing{
+	public static void main(String[]args){
+		new A129c();
+	}
+}
+//练习5
