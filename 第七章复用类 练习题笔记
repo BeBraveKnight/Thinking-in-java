@@ -405,3 +405,186 @@ public class Car{
 	}
 }
 //练习15
+/*package myPackage;
+public class TestA139{
+	protected void go(){
+		System.out.println("包内部的protected方法");
+	}
+}*/
+import myPackage.*;
+public class A139{
+	public static void main(String[]args){
+		TestA139 t=new TestA139();
+		t.go();//错误：在包外部不能访问protected方法		
+		}
+}
+/*class A{
+	protected void go(){
+		System.out.println("protected方法");
+	}
+}
+public class A139 extends A{
+	public static void main(String[]args){
+		new A139().go();
+	}
+}*/
+//练习16
+class Amphibian{
+	public void fun(Amphibian a){
+		System.out.println("----------");
+	}
+}
+class Frog extends Amphibian{}
+public class A140a{
+	public static void main(String[]args){
+		Frog f=new Frog();
+		f.fun(f);
+		f.fun();
+	}
+}
+//练习17
+class Amphibian{
+	public void fun(Amphibian a){
+		System.out.println("----------");
+	}
+}
+class Frog extends Amphibian{
+	public void fun(){
+		System.out.println("*********");
+	}
+}
+public class A140b{
+	public static void main(String[]args){
+		Frog f=new Frog();
+		f.fun(f);
+		f.fun();
+	}
+}
+//练习18
+public class A142a{
+	final int i=(int)(Math.random()*20);
+	static final int j=(int)(Math.random()*26);
+	public static void main(String[]args){
+		A142a s1=new A142a();
+		System.out.println("i="+s1.i+",j="+s1.j);
+		A142a s2=new A142a();
+		System.out.println("i="+s2.i+",j="+s2.j);
+	}
+}
+//练习19
+class Boot{}
+public class A142b{
+	private final Boot b;
+	public A142b(){
+		b=new Boot();
+	}
+	public A142b(int i){
+		b=new Boot();
+	}
+	public static void main(String[]args){
+		new A142b();
+		new A142b(34);
+	}
+}
+//练习20
+class WithFinals{
+	private final void f(){
+		System.out.println("WithFinals.f()");
+	}
+	private void g(){
+		System.out.println("WithFinals.go()");
+	}
+}
+class OverridingPrivate extends WithFinals{
+	@Override private final void f(){
+		System.out.println("OverridingPrivate.f()");
+	}
+	@Override private void g(){
+		System.out.println("OverridingPrivate.go()");
+	}
+}
+class OverridingPrivate2 extends OverridingPrivate{
+	public final void f(){
+		System.out.println("OverridingPrivate2.f()");
+	}
+	public void g(){
+		System.out.println("OverridingPrivate2.go()");
+	}
+}
+public class A144a{
+	public static void main(String[]args){
+		OverridingPrivate2 op2=new OverridingPrivate2();
+		op2.f();
+		op2.g();
+	}
+}
+//练习21
+class AAA{
+	final void fun(){
+		System.out.println("hello");
+	}
+}
+public class A144b extends AAA{
+	final void fun(){
+		System.out.println("wolrd");
+	}
+	public static void main(String[]args){
+		new A144b().fun();
+	}
+}
+//练习22
+final class A{}
+public class A145 extends A{
+	public static void main(String[]args){
+		new A145();
+	}
+}
+//练习23
+public class A147a{
+	public A147a(){
+		System.out.println("**************");
+	}
+	static{
+		System.out.println("__________");
+	}
+	public static void main(String[]args){
+		A147a t1=new A147a();
+		A147a t2=new A147a();
+	}
+}
+//练习24
+class Insect{
+	private int i=9;
+	protected int j;
+	Insect(){
+		System.out.println("i="+i+",j="+j);
+		j=39;
+	}
+	private static int x1=printInit("static Insect.x1 initialized");
+	static int printInit(String s){
+		System.out.println(s);
+		return 47;
+	}
+}
+class Beetle extends Insect{
+	private int k=printInit("Beetle.k initialized");
+	public Beetle(){
+		System.out.println("k="+k);
+		System.out.println("j="+j);
+	}
+	private static int x2=printInit("static Beetle.x2 initialized");
+}
+class Scarab extends Beetle{
+	private int m=printInit("Scarab.m initialized");
+	public Scarab(){
+		System.out.println("m="+m);
+		System.out.println("j="+j);
+	}
+	private static int x3=printInit("static Beetle.x3 initialized");
+}
+public class A147b{
+	public static void main(String[]args){
+		System.out.println("Scarab constructor");
+		Scarab s=new Scarab();
+	}
+}
