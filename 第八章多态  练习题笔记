@@ -828,3 +828,124 @@ public class A162b{
 	}
 }
 //练习15
+class RectangularGlyph{
+	public String fun(){
+		return "hello";
+	}
+}
+class Glyph{
+	void draw(){
+		System.out.println("Glyph.draw()");
+	}
+	Glyph(){
+		System.out.println("Glyph() before draw()");
+		draw();
+		System.out.println("Glyph() after draw()");
+	}
+}
+class RoundGlyph extends Glyph{
+	private int radius=1;
+	private RectangularGlyph re=new RectangularGlyph();
+	RoundGlyph(int r){
+		radius=r;
+		System.out.println("RoundGlyph.RoundGlyph(),radius="+radius);
+	}
+	void draw(){
+		System.out.println("RoundGlyph.draw(),radius="+radius+re.fun());
+	}
+}
+public class PolyConstructors{
+	public static void main(String[]args){
+		new RoundGlyph(5);
+	}
+}
+//练习16
+class AlertStatus{
+	public void act(){
+		System.out.println("AlertStatus");
+	}
+}
+class A1 extends AlertStatus{
+	public void act(){
+		System.out.println("A1");
+	}
+}
+class A2 extends AlertStatus{
+	public void act(){
+		System.out.println("A2");
+	}
+}
+class A3 extends AlertStatus{
+	public void act(){
+		System.out.println("A3");
+	}
+}
+class Starship{
+	private AlertStatus as=new A1();
+	public void change(){
+		as=new A2();
+	}
+	public void change2(){
+		as=new A3();
+	}
+	public void perform(){
+		as.act();
+	}
+}
+public class A165{
+	public static void main(String[]args){
+		Starship sta=new Starship();
+		sta.perform();
+		sta.change();
+		sta.perform();
+		sta.change2();
+		sta.perform();
+	}
+}
+//练习17
+class Cycle{
+	public void ride(Cycle c){
+		System.out.println("轮子数量："+c.wheels());
+	}
+	public int wheels(){
+		return 8;
+	}
+}
+class Unicycle extends Cycle{
+	public int wheels(){
+		return 3;
+	}
+	public void balance(){
+		System.out.println("Unicycle.balance");
+	}
+}
+class Bicycle extends Cycle{
+	public int wheels(){
+		return 2;
+	}
+	public void balance(){
+		System.out.println("Bicycle.balance");
+	}
+}
+class Tricycle extends Cycle{
+	public int wheels(){
+		return 4;
+	}
+}
+public class A168{
+	public static void tune(Cycle i){
+		i.ride(i);
+	}
+	public static void main(String[]args){
+		Cycle[]c={new Unicycle(),new Bicycle(),new Tricycle()};
+		//c[0].balance();
+		//c[1].balance();
+		//c[2].balance();
+		Unicycle u=(Unicycle)c[0];
+		Bicycle b=(Bicycle)c[1];
+		Tricycle t=(Tricycle)c[2];
+		u.balance();
+		b.balance();
+		//t.balance();
+	}
+}
