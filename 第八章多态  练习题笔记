@@ -266,3 +266,325 @@ public class A153d{
 	}
 }
 //练习6
+enum Note{
+	MIDDLE_C,C_SHARP,B_FLAT;
+}
+class Instrument{
+	void play(Note n){
+		System.out.println("Instrument.play()"+n);
+	}
+	public String toString(){
+		return "Instrument";
+	}
+	void adjust(){
+		System.out.println("Adjusting Instrument");
+	}
+}
+class Wind extends Instrument{
+	void play(Note n){
+		System.out.println("Wind.play()"+n);
+	}
+	public String toString(){
+		return "Wind";
+	}
+	void adjust(){
+		System.out.println("Adjusting Wind");
+	}
+}
+class Percussion extends Instrument{
+	void play(Note n){
+		System.out.println("Percussion.play()"+n);
+	}
+	public String toString(){
+		return "Percussion";
+	}
+	void adjust(){
+		System.out.println("Adjusting Percussion");
+	}
+}
+class Stringed extends Instrument{
+	void play(Note n){
+		System.out.println("Stringed.play()"+n);
+	}
+	public String toString(){
+		return "Stringed";
+	}
+	void adjust(){
+		System.out.println("Adjusting Stringed");
+	}
+}
+class Brass extends Wind{
+	void play(Note n){
+		System.out.println("Brass.play()"+n);
+	}
+	void adjust(){
+		System.out.println("Adjusting Brass");
+	}
+}
+class Woodwind extends Wind{
+	void play(Note n){
+		System.out.println("Woodwind.play()"+n);
+	}
+	public String toString(){
+		return "Woodwind";
+	}
+}
+public class A155a{
+	public static void tune(Instrument i){
+		i.play(Note.MIDDLE_C);
+	}
+	public static void tuneAll(Instrument[]e){
+		for(Instrument in:e){
+			System.out.println(in);
+		}
+	}
+	public static void main(String[]args){
+		Instrument[]orchestra={new Wind(),new Percussion(),new Stringed(),new Brass(),new Woodwind()};
+		tuneAll(orchestra);
+	}
+}
+//练习7
+enum Note{
+	MIDDLE_C,C_SHARP,B_FLAT;
+}
+class Instrument{
+	void play(Note n){
+		System.out.println("Instrument.play()"+n);
+	}
+	public String toString(){
+		return "Instrument";
+	}
+	void adjust(){
+		System.out.println("Adjusting Instrument");
+	}
+}
+class Wind extends Instrument{
+	void play(Note n){
+		System.out.println("Wind.play()"+n);
+	}
+	public String toString(){
+		return "Wind";
+	}
+	void adjust(){
+		System.out.println("Adjusting Wind");
+	}
+}
+class Percussion extends Instrument{
+	void play(Note n){
+		System.out.println("Percussion.play()"+n);
+	}
+	public String toString(){
+		return "Percussion";
+	}
+	void adjust(){
+		System.out.println("Adjusting Percussion");
+	}
+}
+class Stringed extends Instrument{
+	void play(Note n){
+		System.out.println("Stringed.play()"+n);
+	}
+	public String toString(){
+		return "Stringed";
+	}
+	void adjust(){
+		System.out.println("Adjusting Stringed");
+	}
+}
+class FlipDial extends Instrument{ //新的类型Instrument
+	void play(Note n){
+		System.out.println("FlipDial.play()"+n);
+	}
+	public String toString(){
+		return "FlipDial";
+	}
+	void adjust(){
+		System.out.println("Adjusting FlipDial");
+	}
+}
+class Brass extends Wind{
+	void play(Note n){
+		System.out.println("Brass.play()"+n);
+	}
+	void adjust(){
+		System.out.println("Adjusting Brass");
+	}
+}
+class Woodwind extends Wind{
+	void play(Note n){
+		System.out.println("Woodwind.play()"+n);
+	}
+	public String toString(){
+		return "Woodwind";
+	}
+}
+public class A155b{
+	public static void tune(Instrument i){
+		i.play(Note.MIDDLE_C);
+	}
+	public static void tuneAll(Instrument[]e){
+		for(Instrument in:e){
+			System.out.println(in);
+		}
+	}
+	public static void main(String[]args){
+		Instrument[]orchestra={new Wind(),new Percussion(),new Stringed(),new Brass(),new Woodwind(),new FlipDial()};
+		tuneAll(orchestra);
+	}
+}
+//练习8
+import java.util.*;
+enum Note{
+	MIDDLE_C,C_SHARP,B_FLAT;
+}
+class Instrument{
+	void play(Note n){
+		System.out.println("Instrument.play()"+n);
+	}
+	public String toString(){
+		return "Instrument";
+	}
+	void adjust(){
+		System.out.println("Adjusting Instrument");
+	}
+}
+class Wind extends Instrument{
+	void play(Note n){
+		System.out.println("Wind.play()"+n);
+	}
+	public String toString(){
+		return "Wind";
+	}
+	void adjust(){
+		System.out.println("Adjusting Wind");
+	}
+}
+class Percussion extends Instrument{
+	void play(Note n){
+		System.out.println("Percussion.play()"+n);
+	}
+	public String toString(){
+		return "Percussion";
+	}
+	void adjust(){
+		System.out.println("Adjusting Percussion");
+	}
+}
+class Stringed extends Instrument{
+	void play(Note n){
+		System.out.println("Stringed.play()"+n);
+	}
+	public String toString(){
+		return "Stringed";
+	}
+	void adjust(){
+		System.out.println("Adjusting Stringed");
+	}
+}
+class FlipDial extends Instrument{ //新的类型Instrument
+	void play(Note n){
+		System.out.println("FlipDial.play()"+n);
+	}
+	public String toString(){
+		return "FlipDial";
+	}
+	void adjust(){
+		System.out.println("Adjusting FlipDial");
+	}
+}
+class Brass extends Wind{
+	void play(Note n){
+		System.out.println("Brass.play()"+n);
+	}
+	void adjust(){
+		System.out.println("Adjusting Brass");
+	}
+}
+class Woodwind extends Wind{
+	void play(Note n){
+		System.out.println("Woodwind.play()"+n);
+	}
+	public String toString(){
+		return "Woodwind";
+	}
+}
+class RandomInstrument{
+	private Random rand=new Random(47);
+	public Instrument next(){
+		switch(rand.nextInt(6)){
+			default:
+			case 0:return new FlipDial();
+			case 1:return new Wind();
+			case 2:return new Percussion();
+			case 3:return new Stringed();
+			case 4:return new Brass();
+			case 5:return new Woodwind();
+		}
+	}
+}
+public class A155c{
+	public static void tune(Instrument i){
+		i.play(Note.MIDDLE_C);
+	}
+	public static void tuneAll(Instrument[]e){
+		for(Instrument in:e){
+			System.out.println(in);
+		}
+	}
+	public static void main(String[]args){
+		RandomInstrument r=new RandomInstrument();
+		Instrument[]or=new Instrument[6];
+		for(int i=0;i<or.length;i++){
+			or[i]=r.next();
+		}
+		tuneAll(or);
+	}
+}
+//练习9
+class Rodent{
+	public void beat(){
+		System.out.println("Rodent.beat()");
+	}
+}
+class Mouse extends Rodent{
+	public void beat(){
+		System.out.println("Mouse.beat()");
+	}
+}
+class Gerbil extends Rodent{
+	public void beat(){
+		System.out.println("Gerbil.beat()");
+	}
+}
+class Hamster extends Rodent{
+	public void beat(){
+		System.out.println("Hamster.beat()");
+	}
+}
+public class A155d{
+	public static void main(String[]args){
+		Rodent[]r={new Mouse(),new Gerbil(),new Hamster()};
+		for(Rodent rodent:r){
+			rodent.beat();
+		}
+	}
+}
+//练习10
+class Father{
+	public void go(){
+		eat();
+		System.out.println("走走走走走啊走");
+	}
+	public void eat(){
+		System.out.println("我吃吃吃吃吃吃吃");
+	}
+}
+public class A155e extends Father{
+	public void eat(){
+		System.out.println("太甜了");
+	}
+	public static void main(String[]args){
+		Father t=new A155e();
+		t.go();
+	}
+}
