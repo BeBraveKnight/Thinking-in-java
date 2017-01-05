@@ -20,3 +20,249 @@ public class A150{
 		fun(t);
 	}
 }
+//练习2
+import java.util.*;
+class Shape{
+	public void draw(){
+	    System.out.println("Shape.draw()");
+	}
+	public void erase(){
+	    System.out.println("Shape.erase()");
+	}
+}
+class Circle extends Shape{
+	@Override public void draw(){
+	    System.out.println("Circle.draw()");
+	}
+	@Override public void erase(){
+		System.out.println("Circle.erase()");
+	}
+}
+class Square extends Shape{
+	@Override public void draw(){
+	    System.out.println("Square.draw()");
+	}
+	@Override public void erase(){
+		System.out.println("Square.erase()");
+	}
+}
+class Triangle extends Shape{
+	@Override public void draw(){
+	    System.out.println("Triangle.draw()");
+	}
+	@Override public void erase(){
+		System.out.println("Triangle.erase()");
+	}
+}
+class RandomShapeGenerator{
+	private Random rand=new Random(47);
+	public Shape next(){
+		switch(rand.nextInt(3)){
+	        default:
+			case 0:return new Circle();
+			case 1:return new Square();
+			case 2:return new Triangle();
+		}
+	}
+}
+public class A153a{
+	private static RandomShapeGenerator gen=new RandomShapeGenerator();
+	public static void main(String[]args){
+		Shape[]s=new Shape[9];
+		for(int i=0;i<s.length;i++){
+			s[i]=gen.next();
+		}
+		for(Shape sh:s){
+			sh.draw();
+		}
+	}
+}
+//练习3
+import java.util.*;
+class Shape{
+	public void draw(){
+	    System.out.println("Shape.draw()");
+	}
+	public void erase(){
+	    System.out.println("Shape.erase()");
+	}
+	public void print(){
+		System.out.println("Hello World");
+	}
+}
+class Circle extends Shape{
+	@Override public void draw(){
+	    System.out.println("Circle.draw()");
+	}
+	@Override public void erase(){
+		System.out.println("Circle.erase()");
+	}
+	@Override public void print(){
+		System.out.println("kuang zengwu");
+	}
+}
+class Square extends Shape{
+	@Override public void draw(){
+	    System.out.println("Square.draw()");
+	}
+	@Override public void erase(){
+		System.out.println("Square.erase()");
+	}
+	@Override public void print(){
+		System.out.println("kuang zengwu");
+	}
+}
+class Triangle extends Shape{
+	@Override public void draw(){
+	    System.out.println("Triangle.draw()");
+	}
+	@Override public void erase(){
+		System.out.println("Triangle.erase()");
+	}
+	@Override public void print(){
+		System.out.println("kuang zengwu");
+	}
+}
+class RandomShapeGenerator{
+	private Random rand=new Random(47);
+	public Shape next(){
+		switch(rand.nextInt(3)){
+	        default:
+			case 0:return new Circle();
+			case 1:return new Square();
+			case 2:return new Triangle();
+		}
+	}
+}
+public class A153b{
+	private static RandomShapeGenerator gen=new RandomShapeGenerator();
+	public static void main(String[]args){
+		Shape[]s=new Shape[9];
+		for(int i=0;i<s.length;i++){
+			s[i]=gen.next();
+		}
+		for(Shape sh:s){
+			sh.draw();
+		}
+	}
+}
+//练习4
+import java.util.*;
+class Shape{
+	public void draw(){
+	    System.out.println("Shape.draw()");
+	}
+	public void erase(){
+	    System.out.println("Shape.erase()");
+	}
+	public void print(){
+		System.out.println("Hello World");
+	}
+}
+class Circle extends Shape{
+	@Override public void draw(){
+	    System.out.println("Circle.draw()");
+	}
+	@Override public void erase(){
+		System.out.println("Circle.erase()");
+	}
+	@Override public void print(){
+		System.out.println("kuang zengwu");
+	}
+}
+class Square extends Shape{
+	@Override public void draw(){
+	    System.out.println("Square.draw()");
+	}
+	@Override public void erase(){
+		System.out.println("Square.erase()");
+	}
+	@Override public void print(){
+		System.out.println("kuang zengwu");
+	}
+}
+class Triangle extends Shape{
+	@Override public void draw(){
+	    System.out.println("Triangle.draw()");
+	}
+	@Override public void erase(){
+		System.out.println("Triangle.erase()");
+	}
+	@Override public void print(){
+		System.out.println("kuang zengwu");
+	}
+}
+class Rhombus extends Shape{
+	@Override public void draw(){
+	    System.out.println("Rhombus.draw()");
+	}
+	@Override public void erase(){
+		System.out.println("Rhombus.erase()");
+	}
+	@Override public void print(){
+		System.out.println("kuang zengwu");
+	}
+}
+class RandomShapeGenerator{
+	private Random rand=new Random(47);
+	public Shape next(){
+		switch(rand.nextInt(4)){
+	        default:
+			case 0:return new Circle();
+			case 1:return new Square();
+			case 2:return new Triangle();
+			case 3:return new Rhombus();
+		}
+	}
+}
+public class A153c{
+	private static RandomShapeGenerator gen=new RandomShapeGenerator();
+	public static void main(String[]args){
+		Shape[]s=new Shape[9];
+		for(int i=0;i<s.length;i++){
+			s[i]=gen.next();
+		}
+		for(Shape sh:s){
+			sh.draw();
+			sh.print();
+		}
+	}
+}
+//练习5
+class Cycle{
+	public void ride(Cycle c){
+		System.out.println("属于Cycle");
+	}
+	public int wheels(){
+		return 0;
+	}
+}
+class Unicycle extends Cycle{
+	public int wheels(){
+		return 1;
+	}
+}
+class Bicycle extends Cycle{
+	public int wheels(){
+		return 2;
+	}
+}
+class Tricycle extends Cycle{
+	public int wheels(){
+		return 3;
+	}
+}
+public class A153d{
+	public static void fun(Cycle c){
+		System.out.println(c.wheels());
+	}
+	public static void main(String[]args){
+		Unicycle u=new Unicycle();
+		Bicycle b=new Bicycle();
+		Tricycle t=new Tricycle();
+		fun(u);
+		fun(b);
+		fun(t);
+	}
+}
+//练习6
