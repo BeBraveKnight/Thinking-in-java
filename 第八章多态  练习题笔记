@@ -588,3 +588,243 @@ public class A155e extends Father{
 		t.go();
 	}
 }
+//练习11
+class Meal {
+    Meal() { System.out.println("Meal()"); }
+}
+class Bread {
+    Bread() { System.out.println("Bread()"); }
+}
+class Cheese {
+    Cheese() { System.out.println("Cheese()"); }
+}
+class Pickle{ //新添加的
+	Pickle(){System.out.println("Pickle()");}
+}
+class Lettuce {
+    Lettuce() { System.out.println("Lettuce()"); }
+}
+class Lunch extends Meal {
+    Lunch() { System.out.println("Lunch()"); }
+}
+class PortableLunch extends Lunch {
+    PortableLunch() { System.out.println("PortableLunch()");}
+}
+class Sandwich extends PortableLunch {
+	private Pickle p=new Pickle();
+    private Bread b = new Bread();
+    private Cheese c = new Cheese();
+    private Lettuce l = new Lettuce();
+    public Sandwich() { 
+		System.out.println("Sandwich()"); 
+	}
+}
+public class A159{
+	public static void main(String[] args) {
+        new Sandwich();
+	}
+}
+//练习12
+class A{
+	public A(String s){
+		System.out.println(s);
+	}
+}
+class Rodent{
+	private A a=new A("Rodent 中的 A");
+	public Rodent(){System.out.println("Rodent");}
+	public void beat(){
+		System.out.println("Rodent.beat()");
+	}
+}
+class Mouse extends Rodent{
+	private A a=new A("Mouse 中的 A");
+	public Mouse(){System.out.println("Mouse");}
+	public void beat(){
+		System.out.println("Mouse.beat()");
+	}
+}
+class Gerbil extends Rodent{
+	private A a=new A("Gerbil 中的 A");
+	public Gerbil(){System.out.println("Gerbil");}
+	public void beat(){
+		System.out.println("Gerbil.beat()");
+	}
+}
+class Hamster extends Rodent{
+	private A a=new A("Hamster 中的 A");
+	public Hamster(){System.out.println("Hamster");}
+	public void beat(){
+		System.out.println("Hamster.beat()");
+	}
+}
+public class A161{//初始化顺序：先按声明顺序初始化父类的成员和构造器，然后再是导出类
+	public static void main(String[]args){
+		Rodent[]r={new Mouse(),new Gerbil(),new Hamster()};
+		for(Rodent rodent:r){
+			rodent.beat();
+		}
+	}
+}
+//练习13
+class Shared {
+	private int refcount = 0;
+	private static long counter = 0;
+	private final long id = counter++;
+	public Shared() {
+		System.out.println("Creating " + this);
+	}
+	public void addRef() { refcount++; }
+	protected void finalize() {
+		if(refcount > 0)
+			System.out.println("Error: " + refcount + " Shared " + id + " objects in use");
+	}
+	protected void dispose() {
+		if(--refcount == 0)
+			System.out.println("Disposing " + this);
+	}
+	public String toString() { return "Shared " + id; }
+}
+
+class Composing {
+	private Shared shared;
+	private static long counter = 0;
+	private final long id = counter++;
+	public Composing(Shared shared) {
+		System.out.println("Creating " + this);
+		this.shared = shared;
+		this.shared.addRef();
+	}
+	protected void dispose() {
+		System.out.println("Disposing " + this);
+		shared.dispose();
+	}
+	public String toString() { return "Composing " + id; }
+}
+public class ReferenceCounting{
+	public static void main(String[] args) {
+		Shared shared = new Shared();
+		Composing[] composing = { new Composing(shared),
+			new Composing(shared), new Composing(shared),
+			new Composing(shared), new Composing(shared)			
+		};
+		for(Composing c : composing)
+			c.dispose();
+		Composing compTest = new Composing(shared);
+		Composing compTest2 = new Composing(shared);
+		// Test finalize():
+		shared.finalize();
+		Shared sharedTest = new Shared();
+		Composing compTest3 = new Composing(sharedTest);
+		// Test sharedTest finalize():
+		sharedTest.finalize();
+	}
+}
+//练习14
+import java.util.*;
+class Shared {
+	private int refcount = 0;
+	private static long counter = 0;
+	private final long id = counter++; 
+	public Shared() { System.out.println("Creating " + this); }
+	public void addRef() { refcount++; }
+	public String toString() { return "Shared " + id; }
+	public void showRefcount() { System.out.println("refcount = " + refcount); }		
+}
+class RandomRodentGenerator {
+    protected Shared shared = new Shared();
+    private Random rand = new Random();
+    public Rodent next() {
+	   switch(rand.nextInt(3)) {
+		  default:
+		  case 0: return new Mouse(shared);
+		  case 1: return new Rat(shared);
+		  case 2: return new Squirrel(shared);			
+	   }
+	}
+ }
+class Characteristic {
+	private String s;
+	Characteristic(String s) {
+		this.s = s;
+		System.out.println("Creating Characteristic " + s);
+	}	
+}
+class Description {
+	private String s;
+	Description(String s) {
+		this.s = s;
+		System.out.println("Creating Description " + s);
+	}
+}
+class Rodent {
+	private String name = "Rodent";
+	private Shared shared;
+	private static long counter = 0;
+	private final long id = counter++; 
+	private Characteristic c = new Characteristic("has tail");
+	private Description d = new Description("small mammal");
+	Rodent(Shared shared) { 
+		System.out.println("Rodent() " + id); 
+		this.shared = shared;
+		this.shared.addRef();
+	}
+	protected void eat() { System.out.println("Rodent.eat()"); }
+	protected void run() { System.out.println("Rodent.run()"); }
+	protected void sleep() { System.out.println("Rodent.sleep()"); }
+	public String toString() { return name + " " + id; }
+}
+
+class Mouse extends Rodent {
+	private String name = "Mouse";
+	private Characteristic c = new Characteristic("likes cheese");
+	private Description d = new Description("nocturnal");
+	Mouse(Shared shared) {
+		super(shared); 
+		System.out.println("Mouse()");		
+	}
+	protected void eat() { System.out.println("Mouse.eat()"); }
+	protected void run() { System.out.println("Mouse.run()"); }
+	protected void sleep() { System.out.println("Mouse.sleep()"); }
+	public String toString() { return name + ", " + super.toString(); }
+}
+
+class Rat extends Rodent {
+	private String name = "Rat";
+	private Characteristic c = new Characteristic("larger");
+	private Description d = new Description("black");
+	Rat(Shared shared) { 
+		super(shared);
+		System.out.println("Rat()"); 
+	}
+	protected void eat() { System.out.println("Rat.eat()"); }
+	protected void run() { System.out.println("Rat.run()"); }
+	protected void sleep() { System.out.println("Rat.sleep()"); }
+	public String toString() { return name + ", " + super.toString(); }
+}
+
+class Squirrel extends Rodent {
+	private String name = "Squirrel";
+	private Characteristic c = new Characteristic("climbs trees");
+	private Description d = new Description("likes nuts");
+	Squirrel(Shared shared) { 
+		super(shared);
+		System.out.println("Squirrel()"); 
+	}
+	protected void eat() { System.out.println("Squirrel.eat()"); }
+	protected void run() { System.out.println("Squirrel.run()"); }
+	protected void sleep() { System.out.println("Squirrel.sleep()"); }
+	public String toString() { return name + ", " + super.toString(); }
+}
+public class A162b{
+	private static RandomRodentGenerator gen = new RandomRodentGenerator();
+	public static void main(String[] args) {
+		Rodent[] rodents = new Rodent[5];
+		for(Rodent r : rodents) {
+			r = gen.next();
+			System.out.println(r);
+		}
+		gen.shared.showRefcount();		
+	}
+}
+//练习15
