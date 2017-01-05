@@ -1,0 +1,22 @@
+//练习1
+class Cycle{
+	public void ride(Cycle c){
+		System.out.println("属于Cycle");
+	}
+}
+class Unicycle extends Cycle{}
+class Bicycle extends Cycle{}
+class Tricycle extends Cycle{}
+public class A150{
+	public static void fun(Cycle c){
+		c.ride(c);
+	}
+	public static void main(String[]args){
+		Unicycle u=new Unicycle();
+		Bicycle b=new Bicycle();
+		Tricycle t=new Tricycle();
+		fun(u);
+		fun(b);
+		fun(t);
+	}
+}
