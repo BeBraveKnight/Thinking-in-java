@@ -1,0 +1,96 @@
+//练习1
+abstract class Rodent{
+	public abstract void beat();
+}
+class Mouse extends Rodent{
+	public void beat(){
+		System.out.println("Mouse.beat()");
+	}
+}
+class Gerbil extends Rodent{
+	public void beat(){
+		System.out.println("Gerbil.beat()");
+	}
+}
+class Hamster extends Rodent{
+	public void beat(){
+		System.out.println("Hamster.beat()");
+	}
+}
+public class A171a{
+	public static void main(String[]args){
+		Rodent[]r={new Mouse(),new Gerbil(),new Hamster()};
+		for(Rodent rodent:r){
+			rodent.beat();
+		}
+	}
+}
+//练习2
+abstract class A{}
+public class A171b{
+	public static void main(String[]args){
+		//new A();
+	}
+}
+//练习3
+abstract class Father{
+	public Father(){
+		print();
+	}
+	abstract public void print();
+}//初始化的实际过程：1、在其他任何事物发生之前，将分配给对象的存储空间初始化成二进制的0
+public class A171c extends Father{
+	private int i=34;
+	public void print(){
+		System.out.println(i);
+	}
+	public static void main(String[]args){
+		A171c t=new A171c();
+		t.print();
+	}
+}
+//练习4
+abstract class Father{
+	public void fun(){};
+}
+public class A172 extends Father{
+	public void fun(){
+		System.out.println("hello");
+	}
+	public A172(){
+		System.out.print("kuang");
+	}
+	public static void go(Father f){
+		A172 a=(A172)f;
+		a.fun();
+	}
+	public static void main(String[]args){
+		new A172().go(new A172());
+	}
+}
+//练习5
+/*package myPackage;
+public interface TestA174{
+	void f1();
+	void f2();
+	void f3();
+}*/
+import myPackage.*;
+public class A174a implements TestA174{
+	public void f1(){
+		System.out.println("f1()");
+	}
+	public void f2(){
+		System.out.println("f2()");
+	}
+	public void f3(){
+		System.out.println("f3()");
+	}
+	public static void main(String[]args){
+		A174a a=new A174a();
+		a.f1();
+		a.f2();
+		a.f3();
+	}
+}
+//练习6
