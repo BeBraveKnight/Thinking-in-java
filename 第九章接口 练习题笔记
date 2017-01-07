@@ -262,3 +262,51 @@ public class A174f{
 	}
 }
 //练习11
+class Apply{
+	public static void process(Processor p,Object s){
+		System.out.println("Using Processor "+p.name());
+		System.out.println(p.process(s));
+	}
+}
+interface Processor{
+	String name();
+	Object process(Object input);
+}
+class A{
+	public String name(){
+		return "A";
+	}
+	public String process(String s){
+		char[]c=s.toCharArray();
+		if(c.length%2==0){
+			for(int x=0;x<c.length;x+=2){
+				char t=c[x];
+				c[x]=c[x+1];
+				c[x+1]=t;
+			}
+			return String.valueOf(c);
+		}else{
+			for(int x=0;x<c.length-1;x+=2){
+				char t=c[x];
+				c[x]=c[x+1];
+				c[x+1]=t;
+			}
+			return String.valueOf(c);
+		}
+	}
+}
+class StringProcessor implements Processor{
+	A a;
+	public StringProcessor(A a){
+		this.a=a;
+	}
+	public String name(){return a.name();}
+	public String process(Object input){
+		return a.process((String)input);
+	}
+}
+public class A178{
+	public static void main(String[]args){
+		Apply.process(new StringProcessor(new A()),"helloworld!");
+	}
+}
