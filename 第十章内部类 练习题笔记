@@ -523,3 +523,187 @@ public class A201b{
 	}
 }
 //练习18
+public class A202a{
+	public static class B{
+		public B(){
+			System.out.println("hello world");
+		}
+	}
+	public static void main(String[]args){
+		B b=new B();
+	}
+}
+//练习19
+public class A202b{
+	static class Outer{
+		public static class Inner{
+			public Inner(){
+				System.out.println("内部类");
+			}
+		}
+	}
+	public static void main(String[]args){
+		A202b a=new A202b();
+	}
+}
+//练习20
+interface Outer{
+	void fun();
+	class Inner implements Outer{
+		public void fun(){
+			System.out.println("hello world");
+		}
+	}
+}
+public class A203a{
+	public static void main(String[]args){
+		Outer.Inner a=new Outer.Inner();
+		a.fun();
+	}
+}
+//练习21
+interface Outer{
+	void fun();
+	class Inner implements Outer{
+		public void fun(){
+			System.out.println("hello world");
+		}
+		public static void go(Inner i){
+			Outer outer=i;
+			outer.fun();
+		}
+	}
+}
+public class A203b{
+	public static void main(String[]args){
+		Outer.Inner a=new Outer.Inner();
+		a.go(a);
+	}
+}
+//练习22
+interface Selector{
+	boolean end();
+	Object current();
+	void next();
+}
+class Sequence {
+	private Object[]items;
+	private int next=0;
+	public Sequence(int size){
+		items=new Object[size];
+	}
+	public void add(Object x){
+		if(next<items.length){
+			items[next++]=x;
+		}
+	}
+	private class SequenceSelector implements Selector{
+		private int i=0;
+		public boolean end(){
+			return i==items.length;
+		}
+		public Object current(){
+			return items[i];
+		}
+		public void next(){
+			if(i<items.length){
+				i++;
+			}
+		}
+	}
+	public Selector selector(){
+		return new SequenceSelector();
+	}
+	public Selector reverseSelector(){
+		return new Selector(){
+			private int i=items.length-1;
+			public boolean end(){
+				return i==(-1);
+			}
+			public Object current(){
+				return items[i];
+			}
+			public void next(){
+				if(i>=0){
+					i--;
+				}
+			}
+		};
+	}
+}
+public class A205a{
+	public static void main(String[]args){
+		Sequence sequence=new Sequence(10);
+		for(int i=0;i<10;i++){
+			sequence.add(Integer.toString(i));
+		}
+		Selector selector=sequence.selector();
+		while(!selector.end()){
+			System.out.print(selector.current()+" ");
+			selector.next();
+		}
+		System.out.println("");
+		Selector s=sequence.reverseSelector();
+		while(!s.end()){
+			System.out.print(s.current()+" ");
+			s.next();
+		}
+	}
+}
+//练习23
+interface U{
+	void f1();
+	void f2();
+	String toString();
+}
+class A{
+	public U fun(){
+		return new U(){
+			public void f1(){System.out.println("I'm f1()");}
+			public void f2(){System.out.println("I'm f2()");}
+			public String toString(){return "I'm a U";}
+		};
+	}
+}
+class B{
+	private int i=0;
+	U[]object;
+	public B(int num){
+		object=new U[num];
+	}
+	public void add(U o){
+		object[i++]=o;
+	}
+	public void setNull(int j){
+		object[j]=null;
+	}
+	public void go(){
+		for(U u:object){
+			u.f1();
+			u.f2();
+			u.toString();
+		}
+	}
+}
+public class A205b{
+	public static void main(String[]args){
+		A a1=new A();
+		A a2=new A();
+		A a3=new A();
+		A a4=new A();
+		A a5=new A();
+		B b=new B(5);
+		b.add(a1.fun());
+		b.add(a2.fun());
+		b.add(a3.fun());
+		b.add(a4.fun());
+		b.add(a5.fun());
+		b.go();
+		b.setNull(2);
+		b.setNull(3);
+		for(int x=0;x<b.object.length;x++){
+			System.out.println(b.object[x]);
+		}
+	}
+}
+//练习24
