@@ -1,0 +1,107 @@
+//练习1
+class Outer{
+	class Inner{
+		public void go(){
+			System.out.println("kuangzengwu");
+		}
+	}
+	public Inner fun(){
+		return new Inner();
+	}
+}
+public class A191{
+	public static void main(String[]args){
+		Outer.Inner a=new Outer().fun();
+		a.go();
+	}
+}
+//练习2
+class B{
+	String str;
+	public B(String str){
+		this.str=str;
+	}
+	public String toString(){
+		return str;
+	}
+}
+interface Selector{
+	boolean end();
+	Object current();
+	void next();
+}
+public class A192{
+	private Object[]items;
+	private int next=0;
+	public void fun(){
+		System.out.println("kuangzengwu");
+	}
+	public A192(int size){
+		items=new Object[size];
+	}
+	public void add(Object x){
+		if(next<items.length){
+			items[next++]=x;
+		}
+	}
+	private class SequenceSelector implements Selector{
+		private int i=0;
+		public boolean end(){
+			return i==items.length;
+		}
+		public Object current(){
+			return items[i];
+		}
+		public void next(){
+			if(i<items.length){
+				i++;
+			}
+		}
+	}
+	public Selector selector(){
+		return new SequenceSelector();
+	}
+	public static void main(String[]args){
+		A192 sequence=new A192(14);
+		B b1=new B("kuang");
+		B b2=new B("zeng");
+		B b3=new B("wu");
+		B b4=new B("fanliman");
+		for(int i=0;i<10;i++){
+			sequence.add(Integer.toString(i));
+		}
+		sequence.add(b1);
+		sequence.add(b2);
+		sequence.add(b3);
+		sequence.add(b4);
+		Selector selector=sequence.selector();
+		while(!selector.end()){
+			System.out.print(selector.current()+" ");
+			selector.next();
+		}
+	}
+}
+//练习3
+class Outer{
+	private String s;
+	public Outer(String s){
+		this.s=s;
+	}
+	class Inner{
+		public void go(){
+			System.out.println("kuangzengwu");
+		}
+		public String toString(){
+			return s;
+		}
+	}
+	public Inner fun(){
+		return new Inner();
+	}
+}
+public class A193{
+	public static void main(String[]args){
+		Outer.Inner a=new Outer("hello").fun();
+		System.out.println(a);
+	}
+}
