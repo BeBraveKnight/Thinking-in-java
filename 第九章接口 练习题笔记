@@ -310,3 +310,331 @@ public class A178{
 		Apply.process(new StringProcessor(new A()),"helloworld!");
 	}
 }
+//练习12
+interface CanClimb{
+	void climb();
+}
+interface CanFight{
+	void fight();
+}
+interface CanSwim{
+	void swim();
+}
+interface CanFly{
+	void fly();
+}
+class ActionCharacter{
+	public void fight(){};
+}
+class Hero extends ActionCharacter implements CanFight,CanSwim,CanFly,CanClimb{
+	public void swim(){}
+	public void fly(){}
+	public void climb(){}
+}
+public class A179{
+	public static void t(CanFight x){
+			x.fight();
+	}
+	public static void u(CanSwim x){
+			x.swim();
+	}
+	public static void v(CanFly x){
+			x.fly();
+	}
+	public static void c(CanClimb x){
+			x.climb();
+	}
+	public static void w(ActionCharacter x){
+			x.fight();
+	}
+	public static void main(String[]args){
+		Hero h=new Hero();
+		t(h);
+		u(h);
+		v(h);
+		w(h);
+		c(h);
+	}
+}
+//练习13
+interface A{}
+interface B extends A{}
+interface C extends A{}
+interface D extends B,C{}
+public class A180 implements D{
+	public static void main(String[]args){
+		System.out.println("hello");
+	}
+}
+//练习14
+interface A1{
+	void fun1();
+	void go1();
+}
+interface A2{
+	void fun2();
+	void go2();
+}
+interface A3{
+	void fun3();
+	void go3();
+}
+interface B extends A1,A2,A3{
+	void print();
+}
+class Father{
+	public void done(){
+		System.out.println("Father's done()");
+	}
+}
+class Son extends Father implements B{
+    public void done(){
+		System.out.println("done");
+	}
+	public void print(){
+		System.out.println("print");
+	}
+	public void fun1(){
+		System.out.println("fun1");
+	}
+	public void fun2(){
+		System.out.println("fun2");
+	}
+	public void fun3(){
+		System.out.println("fun3");
+	}
+	public void go1(){
+		System.out.println("go1");
+	}
+	public void go2(){
+		System.out.println("go2");
+	}
+	public void go3(){
+		System.out.println("go3");
+	}
+}
+public class A181a{
+	public static void k(A1 x){
+		x.fun1();
+	}
+	public static void m(A2 x){
+		x.fun2();
+	}
+	public static void u(A3 x){
+		x.fun3();
+	}
+	public static void n(B x){
+		x.print();
+	}
+	public static void main(String[]args){
+		Son s=new Son();
+		k(s);
+		m(s);
+		u(s);
+		n(s);
+	}
+}
+//练习15
+interface A1{
+	void fun1();
+	void go1();
+}
+interface A2{
+	void fun2();
+	void go2();
+}
+interface A3{
+	void fun3();
+	void go3();
+}
+interface B extends A1,A2,A3{
+	void print();
+}
+abstract class Father{
+	public void done(){}
+}
+class Son extends Father implements B{
+    public void done(){
+		System.out.println("done");
+	}
+	public void print(){
+		System.out.println("print");
+	}
+	public void fun1(){
+		System.out.println("fun1");
+	}
+	public void fun2(){
+		System.out.println("fun2");
+	}
+	public void fun3(){
+		System.out.println("fun3");
+	}
+	public void go1(){
+		System.out.println("go1");
+	}
+	public void go2(){
+		System.out.println("go2");
+	}
+	public void go3(){
+		System.out.println("go3");
+	}
+}
+public class A181b{
+	public static void k(A1 x){
+		x.fun1();
+	}
+	public static void m(A2 x){
+		x.fun2();
+	}
+	public static void u(A3 x){
+		x.fun3();
+	}
+	public static void n(B x){
+		x.print();
+	}
+	public static void main(String[]args){
+		Son s=new Son();
+		k(s);
+		m(s);
+		u(s);
+		n(s);
+	}
+}
+//练习16
+import java.nio.*;
+import java.util.*;
+class RandomChar{
+	private static Random rand=new Random(47);
+	public char next(){
+		return (char)rand.nextInt(128);
+	}
+}
+public class A183 extends RandomChar implements Readable{
+	private int count;
+	public A183(int count){
+		this.count=count;
+	}
+	public int read(CharBuffer cb){
+		if(count--==0){
+			return -1;
+		}
+		String s=Character.toString(next())+" ";
+		cb.append(s);
+		return s.length();
+	}
+	public static void main(String[]args){
+		Scanner scan=new Scanner(new A183(8));
+		while(scan.hasNext()){
+			System.out.println(scan.next()+" ");
+		}
+	}
+}
+//练习17
+interface A{
+	int fal=40;
+}
+class B implements A{
+	public void go(){
+	    System.out.println(fal++);
+	    System.out.println(fal++);
+	}
+}
+public class A184{
+	public static void main(String[]args){
+		new B().go();
+	}
+}
+//练习18
+interface Cycle{
+	void go();
+}
+interface Factory{
+	Cycle getCycle();
+}
+class Unicycle implements Cycle{
+	public void go(){
+		System.out.println("Unicycle");
+	}
+}
+class UnicycleFactory implements Factory {
+	public Cycle getCycle(){
+		return new Unicycle();
+	}
+}
+class Bicycle implements Cycle{
+	public void go(){
+		System.out.println("Bicycle");
+	}
+}
+class BicycleFactory implements Factory {
+	public Cycle getCycle(){
+		return new Bicycle();
+	}
+}
+class Tricycle implements Cycle{
+	public void go(){
+		System.out.println("Tricycle");
+	}
+}
+class TricycleFactory implements Factory {
+	public Cycle getCycle(){
+		return new Tricycle();
+	}
+}
+public class A188a{
+	public static void fun(Factory fact){
+        Cycle c=fact.getCycle();
+		c.go();
+	}
+	public static void main(String[]args){
+		fun(new BicycleFactory());
+		fun(new UnicycleFactory());
+	}
+}
+//练习19
+interface Game{
+	void throwing();
+}
+interface GameFactory{
+	Game getGame();
+}
+class Coin implements Game{
+	public void throwing(){
+		for(int i=0;i<6;i++){
+	      int a=(int)(Math.random()*2);
+		  if(a==1){
+			System.out.println("第"+i+"次:正面");
+		  }else{
+			  System.out.println("第"+i+"次:反面");
+		  }
+		}
+	}
+}
+class CoinFactory implements GameFactory{
+	public Game getGame(){
+		return new Coin();
+	}
+}
+class Dice implements Game{
+	public void throwing(){
+		for(int i=0;i<6;i++){
+			int a=(int)(Math.random()*6+1);
+			System.out.println("第"+i+"次:"+a+"点");
+		}
+	}
+}
+class DiceFactory implements GameFactory{
+	public Game getGame(){
+		return new Dice();
+	}
+}
+public class A188b{
+	public static void funny(GameFactory f){
+		Game g=f.getGame();
+		g.throwing();
+	}
+	public static void main(String[]args){
+		funny(new CoinFactory());
+		funny(new DiceFactory());
+	}
+}
