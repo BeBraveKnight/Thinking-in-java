@@ -1,0 +1,200 @@
+//练习1
+import java.util.*;
+class Gerbil{
+	private int gerbilNumber;
+	public Gerbil(int num){
+		this.gerbilNumber=num;
+	}
+	public void hop(){
+		System.out.println(this.gerbilNumber+"正在跳跃！");
+	}
+}
+public class A219{
+	public static void main(String[]args){
+		ArrayList<Gerbil> g=new ArrayList<Gerbil>();
+		g.add(new Gerbil(1));
+		g.add(new Gerbil(2));
+		g.add(new Gerbil(3));
+		g.add(new Gerbil(4));
+	    for(int i=0;i<g.size();i++){
+		    g.get(i).hop();
+		}
+	}
+}
+//练习2
+import java.util.*;
+public class SimpleCollection{
+	public static void main(String[]args){
+		Set<Integer> c=new TreeSet<Integer>();
+		for(int i=0;i<10;i++){
+			c.add(i);
+		}
+		for(Integer in:c){
+			System.out.print(in+"、");
+		}
+	}
+}
+//练习3
+import java.util.*;
+import java.util.List;
+interface Selector{
+	boolean end();
+	Object current();
+	void next();
+}
+class Sequence {
+	private List<Object>items;
+	private int next=0;
+	public Sequence(int size){
+		items=new ArrayList<Object>();
+	}
+	public void add(Object x){
+		items.add(x);
+	}
+	private class SequenceSelector implements Selector{
+		private int i=0;
+		public boolean end(){
+			return i==items.size();
+		}
+		public Object current(){
+			return items.get(i);
+		}
+		public void next(){
+			if(i<items.size()){
+				i++;
+			}
+		}
+	}
+	public Selector selector(){
+		return new SequenceSelector();
+	}
+	public Selector reverseSelector(){
+		return new Selector(){
+			private int i=items.size()-1;
+			public boolean end(){
+				return i==(-1);
+			}
+			public Object current(){
+				return items.get(i);
+			}
+			public void next(){
+				if(i>=0){
+					i--;
+				}
+			}
+		};
+	}
+}
+public class A220b{
+	public static void main(String[]args){
+		Sequence sequence=new Sequence(10);
+		for(int i=0;i<10;i++){
+			sequence.add(Integer.toString(i));
+		}
+		Selector selector=sequence.selector();
+		while(!selector.end()){
+			System.out.print(selector.current()+" ");
+			selector.next();
+		}
+		System.out.println("");
+		Selector s=sequence.reverseSelector();
+		while(!s.end()){
+			System.out.print(s.current()+" ");
+			s.next();
+		}
+	}
+}
+//练习4
+import java.util.*;
+class Generictor{
+	int x=0;
+	public String next(){
+		switch(x){
+			default:
+			case 0:x++;return "Snow White";
+			case 1:x++;return "Snow red";
+			case 2:x++;return "Snow green";
+			case 3:x++;return "Snow blue";
+			case 4:x++;return "Snow black";
+			case 5:x=0;return "Snow orange";
+		}
+	}
+	public void fill(String[]str){
+		for(int x=0;x<str.length;x++){
+			str[x]=next();
+		}
+	}
+	public Collection fillc(Collection<String>c,int n){
+		for(int x=0;x<n;x++){
+			c.add(next());
+		}
+		return c;
+	}
+}
+public class A223{
+	public static void main(String[]args){
+		Generictor g=new Generictor();
+		String[]s=new String[10];
+		g.fill(s);
+		for(String str:s){
+			System.out.print(str+"、");
+		}
+		System.out.println("");
+		System.out.println(g.fillc(new ArrayList<String>(),10));
+		System.out.println(g.fillc(new LinkedList<String>(),10));
+		System.out.println(g.fillc(new HashSet<String>(),10));
+		System.out.println(g.fillc(new TreeSet<String>(),10));
+		System.out.println(g.fillc(new LinkedHashSet<String>(),10));
+	}
+}
+//练习5
+import java.util.*;
+import java.util.List;
+public class A225{
+	public static void main(String[]args){
+		List<Integer>inte=Arrays.asList(34,86,92,37,49,27,63);
+		System.out.println(inte);
+	}
+}
+//练习6
+import java.util.*;
+import java.util.List;
+public class A226a{
+	public static void main(String[]args){
+		List<String>inte=Arrays.asList("kuang","zeng","wu","love","fan","li","man");
+		System.out.println(inte);
+	}
+}
+//练习7
+import java.util.*;
+import java.util.List;
+abstract class Pet{
+	public abstract String toString();
+}
+class Rat extends Pet{
+	public String toString(){return "Rat";}
+}
+class Manx extends Pet{
+	public String toString(){return "Manx";}
+}
+class Cymric extends Pet{
+	public String toString(){return "Cymric";}
+}
+class Pug extends Pet{
+	public String toString(){return "Pug";}
+}
+class Hamster extends Pet{
+	public String toString(){return "Hamster";}
+}
+public class A226b{
+	public static void main(String[]args){
+		Pet[]p={new Rat(),new Manx(),new Cymric(),new Pug(),new Hamster()};
+	    List<Pet>list=new ArrayList<Pet>();
+		Collections.addAll(list,p);
+	    System.out.println(list);
+	    List<Pet>sub=list.subList(2,4);
+	    list.removeAll(sub);
+	    System.out.println(list);
+	}
+}
+//练习8
