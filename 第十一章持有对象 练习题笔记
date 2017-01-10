@@ -198,3 +198,403 @@ public class A226b{
 	}
 }
 //练习8
+import java.util.*;
+class Gerbil{
+	private int gerbilNumber;
+	public Gerbil(int num){
+		this.gerbilNumber=num;
+	}
+	public void hop(){
+		System.out.println(this.gerbilNumber+"正在跳跃！");
+	}
+}
+public class A227a{
+	public static void main(String[]args){
+		ArrayList<Gerbil> g=new ArrayList<Gerbil>();
+		g.add(new Gerbil(1));
+		g.add(new Gerbil(2));
+		g.add(new Gerbil(3));
+		g.add(new Gerbil(4));
+		Iterator<Gerbil>it=g.iterator();
+	    while(it.hasNext()){
+		    Gerbil ger=it.next();
+			ger.hop();
+		}
+	}
+}
+//练习9
+import java.util.*;
+class Sequence {
+	private ArrayList<Object>items=new ArrayList<Object>();
+	public void add(Object x){
+		items.add(x);
+	}
+	public Iterator iterator(){
+		return items.iterator();
+	}
+}
+public class A227b{
+	public static void main(String[]args){
+		Sequence sequence=new Sequence();
+		for(int i=0;i<10;i++){
+			sequence.add(Integer.toString(i));
+		}
+		Iterator it=sequence.iterator();
+		while(it.hasNext()){
+			System.out.print(it.next()+" ");
+		}
+		System.out.println("");
+	}
+}
+//练习10
+import java.util.*;
+class Char{
+	public Char(){
+		System.out.println("Char");
+	}
+}
+interface Rodent{
+	Char c=new Char();
+	abstract public void beat();
+}
+class Mouse implements Rodent{
+	private Char c=new Char();
+	public Mouse(){
+		System.out.println("Mouse");
+	}
+	public void beat(){
+		System.out.println("哈哈哈哈哈哈哈");
+	}
+}
+class Gerbil implements Rodent{
+	private Char c=new Char();
+	public Gerbil(){
+		System.out.println("Gerbil");
+	}
+	public void beat(){
+		System.out.println("呵呵呵呵呵呵呵呵呵");
+	}
+}
+class Hamster implements Rodent{
+	private Char c=new Char();
+	public Hamster(){
+		System.out.println("Hamster");
+	}
+	public void beat(){
+		System.out.println("轰轰轰轰轰轰轰轰");
+	}
+}
+public class A227c{
+	public static void main(String[]args){
+		ArrayList<Rodent>a=new ArrayList<Rodent>();
+		Collections.addAll(a,new Mouse(),new Gerbil(),new Hamster());
+		Iterator<Rodent>it=a.iterator();
+		while(it.hasNext()){
+			Rodent r=it.next();
+			r.beat();
+		}
+	}
+}
+//练习11
+import java.util.*;
+public class A227d{
+	public static void fun(Iterator<String>it){
+		while(it.hasNext()){
+			String str=it.next();
+			System.out.print(str.toString()+"、");
+		}
+		System.out.println();
+	}
+	public static void main(String[]args){
+		ArrayList<String>s=new ArrayList();
+		Collections.addAll(s,"kuang","zeng","wu","fan","liman");
+		LinkedList<String>lls=new LinkedList<String>(s);
+		HashSet<String>hss=new HashSet<String>(s);
+		TreeSet<String>tss=new TreeSet<String>(s);
+		fun(s.iterator());
+		fun(lls.iterator());
+		fun(hss.iterator());
+		fun(tss.iterator());
+	}
+}
+//练习12
+import java.util.List;
+import java.util.*;
+public class A228{
+	public static void main(String[]args){
+		List<Integer>in1=new ArrayList();
+		Collections.addAll(in1,15,16,17,18,19);
+		List<Integer>in2=new ArrayList();
+		Collections.addAll(in2,20,21,22,23,24);
+		ListIterator<Integer>it=in1.listIterator();
+		while(it.hasNext()){
+			System.out.print(it.next()+"、");
+		}
+		System.out.println();
+		while(it.hasPrevious()){
+			in2.add(it.previous());
+		}
+		System.out.println(in2);
+	}
+}
+//练习13
+import java.util.*;
+import java.util.List;
+abstract class Event{
+	private long eventTime;
+	protected final long delayTime;
+	public Event(long delayTime){
+		this.delayTime=delayTime;
+		start();
+	}
+	public void start(){
+		eventTime=System.nanoTime()+delayTime;
+	}
+	public boolean ready(){
+		return System.nanoTime()>=eventTime;
+	}
+	public abstract void action();
+}
+class Controller{
+	private List<Event>eventList=new LinkedList<Event>();
+	public void addEvent(Event c){
+		eventList.add(c);
+	}
+	public void run(){
+		Iterator<Event> it=eventList.iterator();
+		while(it.hasNext()){
+			Event e=it.next();
+			System.out.println(e);
+		}
+	}
+}
+class GreenhouseControls extends Controller{
+	private boolean light=false;
+	public class LightOn extends Event{
+		public LightOn(long delayTime){
+			super(delayTime);
+		}
+		public void action(){
+			light=true;
+		}
+		public String toString(){
+			return "Light is on";
+		}
+	}
+	public class LightOff extends Event{
+		public LightOff(long delayTime){
+			super(delayTime);
+		}
+		public void action(){
+			light=false;
+		}
+		public String toString(){
+			return "Light is off";
+		}
+	}
+	private boolean water=false;
+	public class WaterOn extends Event{
+		public WaterOn(long delayTime){
+			super(delayTime);
+		}
+		public void action(){
+			water=true;
+		}
+		public String toString(){
+			return "Greenhouse water is on";
+		}
+	}
+	public class WaterOff extends Event{
+		public WaterOff(long delayTime){
+			super(delayTime);
+		}
+		public void action(){
+			water=false;
+		}
+		public String toString(){
+			return " Greenhouse water is off";
+		}
+	}
+	private boolean fan=false;
+	public class FanOn extends Event{
+		public FanOn(long delayTime){
+			super(delayTime);
+		}
+		public void action(){
+			fan=true;
+		}
+		public String toString(){
+			return "Greenhouse fan is on";
+		}
+	}
+	public class FanOff extends Event{
+		public FanOff(long delayTime){
+			super(delayTime);
+		}
+		public void action(){
+			fan=false;
+		}
+		public String toString(){
+			return " Greenhouse fan is off";
+		}
+	}
+	private String thermostat="Day";
+	public class ThermostatNight extends Event{
+		public ThermostatNight(long delayTime){
+			super(delayTime);
+		}
+		public void action(){
+			thermostat="Night";
+		}
+		public String toString(){
+			return "Thermostat on night setting";
+		}
+	}
+	public class ThermostatDay extends Event{
+		public ThermostatDay(long delayTime){
+			super(delayTime);
+		}
+		public void action(){
+			thermostat="Day";
+		}
+		public String toString(){
+			return "Thermostat on day setting";
+		}
+	}
+	public class Bell extends Event{
+		public Bell(long delayTime){
+			super(delayTime);
+		}
+		public void action(){
+			addEvent(new Bell(delayTime));
+		}
+		public String toString(){
+			return "Bing!";
+		}
+	}
+	public class Restart extends Event{
+		private Event[]eventList;
+		public Restart(long delayTime,Event[]eventList){
+			super(delayTime);
+			this.eventList=eventList;
+			for(Event e:eventList){
+				addEvent(e);
+			}
+		}
+		public void action(){
+			for(Event e:eventList){
+				e.start();
+				addEvent(e);
+			}
+			start();
+			addEvent(this);
+		}
+		public String toString(){
+			return "Restarting system";
+		}
+	}
+	public static class Terminate extends Event{
+		public Terminate(long delayTime){super(delayTime);}
+		public void action(){System.exit(0);}
+		public String toString(){return "Terminating";}
+	}
+}
+public class A229a{
+	public static void main(String[]args){
+		GreenhouseControls gc=new GreenhouseControls();
+		gc.addEvent(gc.new Bell(900));
+		Event[]eventList={
+			gc.new ThermostatNight(0),
+			gc.new LightOn(200),
+			gc.new LightOff(400),
+			gc.new WaterOn(600),
+			gc.new WaterOff(800),
+			gc.new FanOn(600),
+			gc.new FanOff(800),
+			gc.new ThermostatDay(1400)
+		};
+		gc.addEvent(gc.new Restart(2000,eventList));
+		if(args.length==1){
+			gc.addEvent(new GreenhouseControls.Terminate(new Integer(args[0])));
+		}
+		gc.run();
+	}
+}
+//练习14
+import java.util.*;
+public class A229b{
+	public static void main(String[]args){
+		LinkedList<Integer>pets=new LinkedList<Integer>();
+		System.out.println(pets.peek());
+		ListIterator<Integer>it=pets.listIterator(pets.size()/2);
+		for(int x=0;x<10;x++){
+			it=pets.listIterator(pets.size()/2);
+			it.add(x);
+		}
+		System.out.println(pets);
+	}
+}
+//练习15
+import java.util.*;
+public class A231{
+	public static void main(String[]args){
+		Stack<Character>stack=new Stack<Character>();
+		stack.push('U');
+		stack.push('n');
+		stack.push('c');
+		System.out.print(stack.pop());
+		System.out.print(stack.pop());
+		System.out.print(stack.pop());
+		stack.push('e');
+		stack.push('r');
+		stack.push('t');
+		System.out.print(stack.pop());
+		System.out.print(stack.pop());
+		System.out.print(stack.pop());
+		stack.push('a');
+		System.out.print(stack.pop());
+		stack.push('i');
+		System.out.print(stack.pop());
+		stack.push('n');
+		stack.push('t');
+		stack.push('y');
+		System.out.print(stack.pop());
+		System.out.print(stack.pop());
+		System.out.print(stack.pop());
+		stack.push(' ');
+		System.out.print(stack.pop());
+		stack.push('r');
+		stack.push('u');
+		System.out.print(stack.pop());
+		System.out.print(stack.pop());
+		stack.push('l');
+		stack.push('e');
+		stack.push('s');
+		System.out.print(stack.pop());
+		System.out.print(stack.pop());
+		System.out.print(stack.pop());
+	}
+}
+//练习16
+import java.util.*;
+public class A233{
+	public static void main(String[]args){
+		Set<Character>set=new HashSet<Character>();
+		Collections.addAll(set,'a','e','i','o','u');
+		int sum=0;
+		for(int x=0;x<args.length;x++){
+			int count=0;
+			char[]cha=args[x].toCharArray();
+			System.out.println("第"+x+"个单词为："+args[x]);
+			for(int y=0;y<cha.length;y++){
+				if(set.contains(cha[y])){
+					count++;
+				}
+			}
+			sum=sum+count;
+			System.out.println("单词中元音字母数量为："+count);
+		}
+		System.out.println("所有元音字母数量总和："+sum);
+	}
+}
+//练习17
