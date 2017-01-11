@@ -598,3 +598,121 @@ public class A233{
 	}
 }
 //练习17
+import java.util.*;
+class Gerbil{
+	private int gerbilNumber;
+	public Gerbil(int num){
+		this.gerbilNumber=num;
+	}
+	public void hop(){
+		System.out.println(this.gerbilNumber+"正在跳跃！");
+	}
+	public String toString(){
+		return "Gerbil "+this.gerbilNumber;
+	}
+}
+public class A235{
+	public static void main(String[]args){
+		Map<String,Gerbil>map=new HashMap<String,Gerbil>();
+		map.put("Fuzzy",new Gerbil(1));
+		map.put("Spot",new Gerbil(2));
+		map.put("Molly",new Gerbil(3));
+		map.put("Freck",new Gerbil(4));
+		System.out.println(map.keySet());
+		Iterator<String>it=map.keySet().iterator();
+		while(it.hasNext()){
+			String str=it.next();
+			System.out.print(str+"、");
+			map.get(str).hop();
+			System.out.println();
+		}
+	}
+}
+//练习18
+import java.util.*;
+public class A236a{
+	public static void main(String[]args){
+		Random rand=new Random(47);
+		Map<String,Integer>map=new HashMap<String,Integer>();
+		map.put("li",24);
+		map.put("man",67);
+		map.put("fan",14);
+		map.put("zeng",94);
+		map.put("wu",54);
+		map.put("kuang",36);
+		System.out.println(map);
+		Set<String>set=new TreeSet<String>(map.keySet());
+		System.out.println(set);
+		Map<String,Integer>map2=new LinkedHashMap<String,Integer>();
+		for(String s:set){
+			map2.put(s,map.get(s));
+		}
+		System.out.println(map2);
+	}
+}
+//练习19
+import java.util.*;
+public class A236b{
+	public static void main(String[]args){
+		Random rand=new Random(47);
+		Set<String>set=new HashSet<String>();
+		set.add("li");
+		set.add("man");
+		set.add("fan");
+		set.add("zeng");
+		set.add("wu");
+		set.add("kuang");
+		System.out.println(set);
+		Set<String>set2=new LinkedHashSet<String>();
+		set2.add("li");
+		set2.add("man");
+		set2.add("fan");
+		set2.add("zeng");
+		set2.add("wu");
+		set2.add("kuang");
+		System.out.println(set2);
+	}
+}
+//练习20
+import java.util.*;
+public class A236c{
+	public static void main(String[]args){
+		Map<Character,Integer>map=new HashMap<Character,Integer>();
+		int sum=0;
+		for(int x=0;x<args.length;x++){
+			int count=0;
+			char[]cha=args[x].toCharArray();
+			System.out.println("第"+x+"个单词为："+args[x]);
+			for(int y=0;y<cha.length;y++){
+				if(cha[y]=='a'){
+					count++;
+					Integer freq=map.get('a');
+					map.put('a',freq==null?1:freq+1);
+				}
+				if(cha[y]=='e'){
+					count++;
+					Integer freq=map.get('e');
+					map.put('e',freq==null?1:freq+1);
+				}if(cha[y]=='i'){
+					count++;
+					Integer freq=map.get('i');
+					map.put('i',freq==null?1:freq+1);
+				}if(cha[y]=='o'){
+					count++;
+					Integer freq=map.get('o');
+					map.put('o',freq==null?1:freq+1);
+				}if(cha[y]=='u'){
+					count++;
+					Integer freq=map.get('u');
+					map.put('u',freq==null?1:freq+1);
+				}
+			}
+			sum=sum+count;
+			System.out.println("单词中元音字母数量为："+count);
+		}
+		System.out.println("所有元音字母数量总和："+sum);
+		System.out.println("右边表示出现的总次数：");
+		System.out.println(map);
+	}
+}
+//练习21
