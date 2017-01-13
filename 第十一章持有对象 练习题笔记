@@ -861,3 +861,165 @@ public class A236g{
 	}
 }
 //练习25
+import java.util.*;
+import java.util.List;
+import java.io.*;
+class TextFile extends ArrayList<String>{
+	public static String read(String fileName){
+		StringBuilder sb=new StringBuilder();
+		try{
+			BufferedReader in=new BufferedReader(new FileReader(new File(fileName).getAbsoluteFile()));
+			try{
+				String s;
+				while((s=in.readLine())!=null){
+					sb.append(s);
+					sb.append("\n");
+				}
+			}finally{
+				in.close();
+			}
+		}catch(IOException e){
+			throw new RuntimeException(e);
+		}
+		return sb.toString();
+	}
+	public TextFile(String fileName,String splitter){
+		super(Arrays.asList(read(fileName).split(splitter)));
+		if(get(0).equals(" "))remove(0);
+	}
+	public TextFile(String fileName){
+		this(fileName,"\n");
+	}
+}
+public class A236h{
+	public static void main(String[] args){
+		Map<String,ArrayList<Integer>>map=new LinkedHashMap<String,ArrayList<Integer>>();
+		List<String>list=new LinkedList<String>(new TextFile("A101a.java","\\W+"));
+		Iterator<String>it=list.iterator();
+		int count=0;
+		while(it.hasNext()){
+			count++;
+			String s=(String)it.next();
+			ArrayList<Integer>a=new ArrayList<Integer>();
+			if(!map.keySet().contains(s)){
+				a.add(count);
+				map.put(s,a);
+			}else{
+				map.get(s).add(count);
+				map.put(s,map.get(s));
+			}
+		}
+		System.out.println(map);
+	}
+}
+//练习26
+import java.util.*;
+import java.util.List;
+import java.io.*;
+class TextFile extends ArrayList<String>{
+	public static String read(String fileName){
+		StringBuilder sb=new StringBuilder();
+		try{
+			BufferedReader in=new BufferedReader(new FileReader(new File(fileName).getAbsoluteFile()));
+			try{
+				String s;
+				while((s=in.readLine())!=null){
+					sb.append(s);
+					sb.append("\n");
+				}
+			}finally{
+				in.close();
+			}
+		}catch(IOException e){
+			throw new RuntimeException(e);
+		}
+		return sb.toString();
+	}
+	public TextFile(String fileName,String splitter){
+		super(Arrays.asList(read(fileName).split(splitter)));
+		if(get(0).equals(" "))remove(0);
+	}
+	public TextFile(String fileName){
+		this(fileName,"\n");
+	}
+}
+public class A236i{
+	public static void main(String[] args){
+		Map<String,ArrayList<Integer>>map=new LinkedHashMap<String,ArrayList<Integer>>();
+		List<String>list=new LinkedList<String>(new TextFile("A101a.java","\\W+"));
+		Iterator<String>it=list.iterator();
+		int count=0;
+		int num=0;
+		while(it.hasNext()){
+			count++;
+			String s=(String)it.next();
+			ArrayList<Integer>a=new ArrayList<Integer>();
+			if(!map.keySet().contains(s)){
+				a.add(count);
+				map.put(s,a);
+			}else{
+				map.get(s).add(count);
+				map.put(s,a);
+			}
+		}
+		System.out.println(list);
+	}
+}
+//练习27
+import java.util.*;
+class Command{
+	String str;
+	public Command(int i){
+		this.str="Hello World    "+i;
+	}
+	public String operation(){
+		return this.str;
+	}
+}
+class CommandTest{
+	public static void test(Queue<Command> queue){
+		System.out.println(queue.remove().operation());
+	}
+}
+public class A237{
+	public static Queue<Command> fun(){
+		Queue<Command> queue=new LinkedList<Command>();
+		queue.offer(new Command(10));
+		return queue;
+	}
+	public static void main(String[]args){
+		new CommandTest().test(fun());
+	}
+}
+//练习28
+import java.util.*;
+public class A238a{
+	public static void print(Queue queue){
+		while(queue.peek()!=null){
+			System.out.print(queue.poll()+" ");
+		}
+	}
+	public static void main(String[]args){
+		Random rand=new Random(47);
+		PriorityQueue<Double>p=new PriorityQueue<Double>();
+		for(int x=0;x<10;x++){
+			p.offer(rand.nextDouble());
+		}
+		print(p);
+	}
+}
+//练习29
+import java.util.*;
+class Fan extends Object{}
+public class A238b {
+	public static void main(String[]args){
+		Fan f1=new Fan();
+		Fan f2=new Fan();
+		Fan f3=new Fan();
+		Fan f4=new Fan();
+		PriorityQueue<Fan>p=new PriorityQueue<Fan>();
+		p.offer(f1);
+		p.offer(f2);
+	}
+}
+//练习30
